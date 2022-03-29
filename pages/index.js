@@ -13,8 +13,8 @@ let scrollbarWidth =
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  /* scrollbar-width: none;
-  -ms-overflow-style: none; */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   .main {
     scroll-snap-type: x mandatory;
@@ -29,18 +29,19 @@ const Container = styled.div`
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 10px;
+      height: 12px;
       background-color: rgba(170, 170, 170, 0.6);
     }
     .progressBar {
-      /* border-radius: 50px; */
+      border-radius: 3px;
       position: fixed;
       bottom: 0;
       left: 0;
       width: 0%;
-      height: 10px;
+      height: 12px;
       background: linear-gradient(to right, #008aff, #00ffe7);
-      transition: width 0.2s;
+      pointer-events: none;
+      transition: width 1s;
       animation: animate 5s linear infinite;
       &:before {
         content: '';
@@ -100,9 +101,13 @@ const Container = styled.div`
 export default function Home() {
   const scrollerRef = useRef();
   const progressBarRef = useRef();
+  const scrollPathRef = useRef();
 
-  const horizontalScroller = useHorizontalScroller(scrollerRef, progressBarRef);
-  // console.log(horizontalScroller);
+  const horizontalScroller = useHorizontalScroller(
+    scrollerRef,
+    progressBarRef,
+    scrollPathRef
+  );
 
   return (
     <Container scrollbarWidth={scrollbarWidth}>
@@ -113,12 +118,27 @@ export default function Home() {
       </Head>
       <div className='main' ref={scrollerRef}>
         <div className='progressBar' ref={progressBarRef} />
-        <div className='scrollPath' />
+        <div className='scrollPath' ref={scrollPathRef} />
         <section>
           <h1>Page One</h1>
         </section>
         <section>
           <h1>Page Two</h1>
+        </section>
+        <section>
+          <h1>Page Three</h1>
+        </section>
+        <section>
+          <h1>Page Three</h1>
+        </section>
+        <section>
+          <h1>Page Three</h1>
+        </section>
+        <section>
+          <h1>Page Three</h1>
+        </section>
+        <section>
+          <h1>Page Three</h1>
         </section>
         <section>
           <h1>Page Three</h1>
