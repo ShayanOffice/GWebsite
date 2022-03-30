@@ -17,14 +17,16 @@ export default function useHorizontalScroller(
     const scrollHorizontally = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
-      console.log(Math.min(
-        scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100,
-        scroller.scrollWidth - scroller.getBoundingClientRect().width
-      ));
+      // console.log(
+      //   Math.min(
+      //     scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
+      //     scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
+      //   )
+      // );
       scroller.scrollTo({
         left: Math.min(
-          scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100,
-          scroller.scrollWidth - scroller.getBoundingClientRect().width
+          scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
+          scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
         ),
         behavior: 'smooth',
       });
