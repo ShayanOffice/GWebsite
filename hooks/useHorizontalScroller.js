@@ -36,7 +36,7 @@ export default function useHorizontalScroller(
     const scrollHorizontally = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
-      console.log(e.deltaY);
+      // console.log(e.deltaY);
       scrollProgress = Math.ceil(
         (Math.min(
           scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
@@ -62,7 +62,7 @@ export default function useHorizontalScroller(
         ) {
           bg.scrollTo({
             left: Math.min(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 170,
+              bg.scrollLeft + (e.deltaY * window.innerWidth) / 240,
               bg.scrollWidth - bg.getBoundingClientRect().width - 1
             ),
             behavior: "smooth",
@@ -72,7 +72,7 @@ export default function useHorizontalScroller(
         if (scroller.scrollLeft > 0) {
           bg.scrollTo({
             left: Math.max(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 170,
+              bg.scrollLeft + (e.deltaY * window.innerWidth) / 240,
               0
             ),
             behavior: "smooth",
