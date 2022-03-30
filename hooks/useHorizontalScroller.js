@@ -17,9 +17,15 @@ export default function useHorizontalScroller(
     const scrollHorizontally = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
-      console.log(scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100);
+      console.log(Math.min(
+        scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100,
+        scroller.scrollWidth - scroller.getBoundingClientRect().width
+      ));
       scroller.scrollTo({
-        left: scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100,
+        left: Math.min(
+          scroller.scrollLeft + (e.deltaY * window.innerWidth) / 100,
+          scroller.scrollWidth - scroller.getBoundingClientRect().width
+        ),
         behavior: 'smooth',
       });
     };
@@ -42,7 +48,7 @@ export default function useHorizontalScroller(
         behavior: 'smooth',
       });
       if (progressBar) progressBar.style.width = posXFact + '%';
-      console.log(targetScrollpx);
+      // console.log(targetScrollpx);
     };
 
     scroller.addEventListener('scroll', updateScrollProgress);

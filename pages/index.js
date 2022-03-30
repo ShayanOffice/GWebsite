@@ -41,7 +41,7 @@ const Container = styled.div`
       height: 12px;
       background: linear-gradient(to right, #008aff, #00ffe7);
       pointer-events: none;
-      transition: width 1s;
+      transition: width 2s;
       animation: animate 5s linear infinite;
       &:before {
         content: '';
@@ -125,22 +125,7 @@ export default function Home() {
         <section>
           <h1>Page Two</h1>
         </section>
-        <section>
-          <h1>Page Three</h1>
-        </section>
-        <section>
-          <h1>Page Three</h1>
-        </section>
-        <section>
-          <h1>Page Three</h1>
-        </section>
-        <section>
-          <h1>Page Three</h1>
-        </section>
-        <section>
-          <h1>Page Three</h1>
-        </section>
-        <section>
+        <section style={{width: "150vw"}}>
           <h1>Page Three</h1>
         </section>
       </div>
