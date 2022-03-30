@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 export default function useHorizontalScroller(
   scrollerRef,
   progressBarRef,
@@ -21,11 +21,11 @@ export default function useHorizontalScroller(
     // bg.style.width = scroller.scrollWidth + 'px';
     scroller.scrollTo({
       left: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
     bg.scrollTo({
       left: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
 
     let scrollProgress = Math.ceil(
@@ -46,13 +46,13 @@ export default function useHorizontalScroller(
           100
       );
       setCompletion(scrollProgress);
-      
+
       scroller.scrollTo({
         left: Math.min(
           scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
           scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
         ),
-        behavior: 'smooth',
+        behavior: "smooth",
       });
 
       if (e.deltaY > 0) {
@@ -65,17 +65,17 @@ export default function useHorizontalScroller(
               bg.scrollLeft + (e.deltaY * window.innerWidth) / 170,
               bg.scrollWidth - bg.getBoundingClientRect().width - 1
             ),
-            behavior: 'smooth',
+            behavior: "smooth",
           });
         }
       } else {
-        if (completion > 0) {
+        if (scroller.scrollLeft > 0) {
           bg.scrollTo({
             left: Math.max(
               bg.scrollLeft + (e.deltaY * window.innerWidth) / 170,
               0
             ),
-            behavior: 'smooth',
+            behavior: "smooth",
           });
         }
       }
@@ -96,35 +96,35 @@ export default function useHorizontalScroller(
         (posXFact * (scroller.scrollWidth - scroller.clientWidth)) / 100;
       scroller.scrollTo({
         left: targetScrollpx,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
       const delta = completion - posXFact;
 
-      if (e.deltaY > 0) {
+      if (posXFact > 0) {
         bg.scrollTo({
           left: targetScrollpx,
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       } else {
       }
-      if (progressBar) progressBar.style.width = posXFact + '%';
+      if (progressBar) progressBar.style.width = posXFact + "%";
       // console.log(targetScrollpx);
     };
 
-    scroller.addEventListener('scroll', updateScrollProgress);
-    scroller.addEventListener('wheel', updateScrollProgress);
-    scroller.addEventListener('wheel', scrollHorizontally);
-    scrollPath.addEventListener('mousedown', handleClick);
+    scroller.addEventListener("scroll", updateScrollProgress);
+    scroller.addEventListener("wheel", updateScrollProgress);
+    scroller.addEventListener("wheel", scrollHorizontally);
+    scrollPath.addEventListener("mousedown", handleClick);
     return () => {
-      scroller.removeEventListener('scroll', updateScrollProgress);
-      scroller.removeEventListener('wheel', updateScrollProgress);
-      scroller.removeEventListener('wheel', scrollHorizontally);
-      scrollPath.removeEventListener('mousedown', handleClick);
+      scroller.removeEventListener("scroll", updateScrollProgress);
+      scroller.removeEventListener("wheel", updateScrollProgress);
+      scroller.removeEventListener("wheel", scrollHorizontally);
+      scrollPath.removeEventListener("mousedown", handleClick);
     };
   }, []);
   useEffect(() => {
     if (!progressBar) progressBar = progressBarRef.current;
-    if (progressBar) progressBar.style.width = completion + '%';
+    if (progressBar) progressBar.style.width = completion + "%";
   }, [completion]);
   return {
     scrollLeft,
