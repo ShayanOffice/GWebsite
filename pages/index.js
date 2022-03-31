@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import { useLottie } from "lottie-react";
-import bg_animation from "../animations/BG_Animation.json";
+import bg_animation from "../animations/animated_melts.json";
 
 import styled from "styled-components";
 import useHorizontalScroller from "../hooks/useHorizontalScroller";
