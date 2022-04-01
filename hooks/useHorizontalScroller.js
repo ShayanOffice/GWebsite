@@ -22,7 +22,6 @@ export default function useHorizontalScroller(
     /* Get the documentElement (<html>) to display the page in fullscreen */
     var elem = document.documentElement;
 
-    /* View in fullscreen */
     function openFullscreen(event) {
       if (event.keyCode === 13 || event.keyCode === 32) {
         if (elem.requestFullscreen) {
@@ -36,8 +35,6 @@ export default function useHorizontalScroller(
         }
       }
     }
-
-    /* Close fullscreen */
     function closeFullscreen(event) {
       if (
         (event.keyCode === 13 || event.keyCode === 32) &&
@@ -54,8 +51,6 @@ export default function useHorizontalScroller(
         }
       }
     }
-    // console.log(scroller.scrollWidth, bg.getBoundingClientRect().width);
-    // bg.style.width = scroller.scrollWidth + 'px';
     scroller.scrollTo({
       left: 0,
       behavior: "smooth",

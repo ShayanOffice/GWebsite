@@ -1,13 +1,9 @@
 Todo:
-    CleanUp the Project
-        Separate Components
-        Separate useHorizontalScrolling and useParallexHorizontalScroll
-    
-    mobileTouch slide fix
     Sidebar
-    Dots
+    Bottom Dots
     Logo Animations
     Make Arrow keys scroll Everything
+    mobileTouch slide fix
 
 
 
@@ -17,3 +13,8 @@ Done:
 
     Particles
     CleanUp the Project
+
+
+Skipped:
+    CleanUp the Project
+        Separate useHorizontalScrolling and useParallexHorizontalScroll
