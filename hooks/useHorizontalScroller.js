@@ -11,12 +11,49 @@ export default function useHorizontalScroller(
   let scroller = scrollerRef.current;
   let progressBar = progressBarRef.current;
   let scrollPath = scrollPathRef.current;
+
   let bg = bgRef.current;
   useEffect(() => {
     if (!scroller) scroller = scrollerRef.current;
     if (!scrollPath) scrollPath = scrollPathRef.current;
 
     if (!bg) bg = bgRef.current;
+
+    /* Get the documentElement (<html>) to display the page in fullscreen */
+    var elem = document.documentElement;
+
+    /* View in fullscreen */
+    function openFullscreen(event) {
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE11 */
+          elem.msRequestFullscreen();
+        }
+      }
+    }
+
+    /* Close fullscreen */
+    function closeFullscreen(event) {
+      if (
+        (event.keyCode === 13 || event.keyCode === 32) &&
+        document.fullscreenElement
+      ) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Safari */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE11 */
+          document.msExitFullscreen();
+        }
+      }
+    }
     // console.log(scroller.scrollWidth, bg.getBoundingClientRect().width);
     // bg.style.width = scroller.scrollWidth + 'px';
     scroller.scrollTo({
@@ -114,11 +151,15 @@ export default function useHorizontalScroller(
     scroller.addEventListener("scroll", updateScrollProgress);
     scroller.addEventListener("wheel", updateScrollProgress);
     scroller.addEventListener("wheel", scrollHorizontally);
+    document.addEventListener("keydown", openFullscreen);
+    document.addEventListener("keydown", closeFullscreen);
     scrollPath.addEventListener("mousedown", handleClick);
     return () => {
       scroller.removeEventListener("scroll", updateScrollProgress);
       scroller.removeEventListener("wheel", updateScrollProgress);
       scroller.removeEventListener("wheel", scrollHorizontally);
+      document.removeEventListener("keydown", openFullscreen);
+      document.removeEventListener("keydown", closeFullscreen);
       scrollPath.removeEventListener("mousedown", handleClick);
     };
   }, []);
