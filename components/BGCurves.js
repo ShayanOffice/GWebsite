@@ -59,14 +59,7 @@ const BGCurves = React.forwardRef((props, ref) => {
       <Anim />
       <Anim />
       <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
-      <Anim />
+
     </Container>
   );
 });

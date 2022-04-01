@@ -99,7 +99,7 @@ export default function useHorizontalScroller(
         ) {
           bg.scrollTo({
             left: Math.min(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 240,
+              bg.scrollLeft + (e.deltaY * window.innerWidth) / 390,
               bg.scrollWidth - bg.getBoundingClientRect().width - 1
             ),
             behavior: "smooth",
@@ -109,7 +109,7 @@ export default function useHorizontalScroller(
         if (scroller.scrollLeft > 0) {
           bg.scrollTo({
             left: Math.max(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 240,
+              bg.scrollLeft + (e.deltaY * window.innerWidth) / 390,
               0
             ),
             behavior: "smooth",
