@@ -1,38 +1,55 @@
+import { useRef, useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
-import Lottie from "lottie-react";
-import { useLottie } from "lottie-react";
-import bg_animation from "../animations/animated_melts.json";
-
 import styled from "styled-components";
+
 import useHorizontalScroller from "../hooks/useHorizontalScroller";
 import Particles from "../components/Particles";
 import BGCurves from "../components/BGCurves";
-
-// let scrollbarWidth =
-//   typeof window !== "undefined" &&
-//   window.innerWidth - document.body.clientWidth;
+import BlobOverlay from "../components/BlobOverlay";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  .overlay {
-    width: 100vw;
-    height: 100vh;
-    /* background-color: black; */
-    position: absolute;
+  position: relative;
+  .scrollPath {
+    position: fixed;
+    bottom: 0;
     left: 0;
-    top: 0;
-    pointer-events: none;
-    z-index: 50;
-    backdrop-filter: brightness(70%) blur(25px) hue-rotate(-3deg) contrast(7)
-      saturate(0.88);
-    pointer-events: none;
+    width: 100%;
+    height: 2%;
+    min-height: 15px;
+    max-height: 50px;
+    background-color: rgba(170, 170, 170, 1);
+    z-index: 10;
   }
-  .pagesContent {
+  .progressBar {
+    border-radius: 3px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2%;
+    min-height: 15px;
+    max-height: 50px;
+    background: linear-gradient(to right, #008aff, #00ffe7);
+    pointer-events: none;
+    transition: width .7s;
+    animation: animate 5s ease-in-out infinite;
+    z-index: 11;
+  }
+  @keyframes animate {
+    0%,
+    100% {
+      filter: hue-rotate(50deg);
+    }
+    50% {
+      filter: hue-rotate(250deg);
+    }
+  }
+  .main {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     overflow-y: hidden;
@@ -40,81 +57,31 @@ const Container = styled.div`
     height: 100%;
     background-color: #eef;
     display: flex;
-    .scrollPath {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3%;
-      min-height: 15px;
-      max-height: 50px;
-      background-color: rgba(170, 170, 170, 1);
-      z-index: 10;
-    }
-    .progressBar {
-      border-radius: 3px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 3%;
-      min-height: 15px;
-      max-height: 50px;
-      background: linear-gradient(to right, #008aff, #00ffe7);
-      pointer-events: none;
-      transition: width 2s;
-      animation: animate 5s ease-in-out infinite;
-      z-index: 11;
-      /* &:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 100%;
-        width: 0%;
-        height: 100%;
-        background: linear-gradient(to right, #008aff, #00ffe7);
-        filter: blur(20px);
-      }
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to right, #008aff, #00ffe7);
-        filter: blur(40px);
-      } */
-    }
-    @keyframes animate {
-      0%,
-      100% {
-        filter: hue-rotate(0deg);
-      }
-      50% {
-        filter: hue-rotate(250deg);
-      }
-    }
+
     section {
       flex: none;
+      width: 100vw;
+      height: 100vh;
       scroll-snap-align: start;
       z-index: 100;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      width: 100vw;
-      height: 100vh;
-      font-weight: bold;
-      font-size: xxx-large;
-      color: #323;
+      margin: 0;
+      padding: 0;
       background: none;
       h1 {
-        font-family: 'Luckiest Guy', cursive;
+        margin: 0;
+        font-family: "Luckiest Guy", cursive;
         /* font-family: "Amatic SC", cursive; */
-        font-weight: 700;
+
         /* font-family: 'Indie Flower', cursive; */
         /* font-family: 'IM Fell English SC', serif; */
         /* font-family: 'Gamja Flower', cursive; */
+        font-size: xxx-large;
+        color: #323;
+        /* font-weight: bold; */
       }
     }
   }
@@ -152,20 +119,11 @@ export default function Home() {
       </Head>
       <Particles />
       <BGCurves ref={bgRef} />
-      <div className="overlay" />
+      <BlobOverlay />
+      <div className="progressBar" ref={progressBarRef} />
+      <div className="scrollPath" ref={scrollPathRef} />
 
-      <div className="pagesContent" ref={scrollerRef}>
-        <div
-          className="progressBar"
-          ref={progressBarRef}
-          style={{ zIndex: 11 }}
-        />
-        <div
-          className="scrollPath"
-          ref={scrollPathRef}
-          style={{ zIndex: 10 }}
-        />
-
+      <div className="main" ref={scrollerRef}>
         <section>
           <h1>Page One</h1>
         </section>

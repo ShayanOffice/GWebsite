@@ -3,7 +3,7 @@ Todo:
         Separate Components
         Separate useHorizontalScrolling and useParallexHorizontalScroll
     
-    mobileToch slide fix
+    mobileTouch slide fix
     Sidebar
     Dots
     Logo Animations
@@ -12,5 +12,8 @@ Todo:
 
 
 Done:
+    CleanUp the Project
+        Separate Components.
+
     Particles
     CleanUp the Project
