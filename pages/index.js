@@ -64,6 +64,7 @@ export default function Home() {
   const scrollPathRef = useRef();
   const bgRef = useRef();
   const [pageCount, setPageCount] = useState({ count: 1, active: 0 });
+  const [selectedDot, setSelectedDot] = useState(0);
   const changeActivePage = (num) =>
     setPageCount((prev) => ({ ...prev, active: num }));
   const horizontalScroller = useHorizontalScroller(
@@ -72,7 +73,9 @@ export default function Home() {
     scrollPathRef,
     bgRef,
     pageCount,
-    setPageCount
+    setPageCount,
+    selectedDot,
+    setSelectedDot
   );
   useEffect(() => {
     let scroller = scrollerRef.current;
@@ -109,7 +112,7 @@ export default function Home() {
       <Particles />
       <BGCurves ref={bgRef} />
       <BlobOverlay />
-      <Dots pageCount={pageCount} changeActivePage={changeActivePage} />
+      <Dots pageCount={pageCount} setSelectedDot={setSelectedDot} />
       <ProgressBar refs={{ progressBarRef, scrollPathRef }} />
 
       <div className="main" ref={scrollerRef}>

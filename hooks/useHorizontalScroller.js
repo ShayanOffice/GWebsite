@@ -5,7 +5,9 @@ export default function useHorizontalScroller(
   scrollPathRef,
   bgRef,
   pageCount,
-  setPageCount
+  setPageCount,
+  selectedDot,
+  setSelectedDot
 ) {
   const [completion, setCompletion] = useState(0);
 
@@ -166,35 +168,31 @@ export default function useHorizontalScroller(
   useEffect(() => {
     if (!progressBar) progressBar = progressBarRef.current;
     if (progressBar) progressBar.style.width = completion + "%";
-    const refreshActiveDot = () => {
-      const pageNum =
-        Math.ceil(
-          (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /
-            scroller.getBoundingClientRect().width
-        ) - 1;
-      if (pageCount.active !== pageNum) {
-        setPageCount((prev) => ({ ...prev, active: pageNum }));
-        // console.log(pageNum);
-      }
-    };
-    const interval = setInterval(() => {
-      refreshActiveDot();
-    }, 100);
-    return () => clearInterval(interval);
+
+    const pageNum =
+      Math.ceil(
+        (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /
+          scroller.getBoundingClientRect().width
+      ) - 1;
+    if (pageCount.active !== pageNum) {
+      setPageCount((prev) => ({ ...prev, active: pageNum }));
+      // console.log(pageNum);
+    }
   }, [completion]);
 
   useEffect(() => {
     // console.log("clicked");
 
-    let targetPx = pageCount.active * scroller.getBoundingClientRect().width;
+    let targetPx = selectedDot * scroller.getBoundingClientRect().width;
     scroller.scrollTo({
       left: targetPx,
       behavior: "smooth",
     });
+    
 
     if (!progressBar) progressBar = progressBarRef.current;
     if (progressBar) progressBar.style.width = completion + "%";
-  }, [pageCount]);
+  }, [selectedDot]);
 
   return {
     scrollLeft,

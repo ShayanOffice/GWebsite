@@ -44,7 +44,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Dots({ pageCount, changeActivePage }) {
+export default function Dots({ pageCount, setSelectedDot }) {
   const dots = () => {
     let pages = [];
     for (let i = 0; i < pageCount.count; i++)
@@ -59,7 +59,7 @@ export default function Dots({ pageCount, changeActivePage }) {
         <span
           key={index}
           onClick={() => {
-            changeActivePage(index);
+            setSelectedDot(index);
           }}
         >
           <h1>.</h1>
