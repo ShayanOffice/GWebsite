@@ -32,11 +32,11 @@ const Container = styled.div`
       left: 0;
       right: 0;
       height: 20vh;
-      background-image: linear-gradient(
+      /* background-image: linear-gradient(
         0deg,
-        #ebebeb 0%,
-        rgba(235, 235, 235, 0) 70% rgba(235, 235, 235, 0) 100%
-      );
+        #000000 0%,
+        rgba(235, 235, 235, 0) 100%
+      ); */
     }
   }
 
@@ -59,60 +59,51 @@ const Container = styled.div`
       width: 10em;
       animation-delay: 1s;
       animation-duration: 17s;
-      filter: blur(5px);
     }
     &:nth-child(3) {
       height: 6em;
       width: 4em;
       animation-delay: 1.5s;
       animation-duration: 8s;
-      filter: blur();
     }
     &:nth-child(4) {
       height: 6em;
       width: 10em;
       animation-delay: 0.5s;
-      filter: blur(3px);
       animation-duration: 13s;
     }
     &:nth-child(5) {
       height: 5em;
       width: 6em;
       animation-delay: 4s;
-      filter: blur(2px);
       animation-duration: 11s;
     }
     &:nth-child(6) {
       height: 8em;
       width: 6em;
       animation-delay: 2s;
-      filter: blur(1px);
       animation-duration: 9s;
     }
     &:nth-child(7) {
       height: 10em;
       width: 6em;
-      filter: blur(2.5px);
       animation-duration: 12s;
     }
     &:nth-child(8) {
       height: 8em;
       width: 10em;
       animation-delay: 5s;
-      filter: blur(6px);
       animation-duration: 18s;
     }
     &:nth-child(9) {
       height: 4em;
       width: 6em;
-      filter: blur(0.5px);
       animation-duration: 9s;
     }
     &:nth-child(10) {
       height: 10em;
       width: 8em;
       animation-delay: 6s;
-      filter: blur(0.5px);
       animation-duration: 12s;
     }
   }
@@ -132,21 +123,21 @@ const Container = styled.div`
 export default function Particles() {
   return (
     <Container>
-      <div class="white">
-        <div class="squares">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
+      <div className="white">
+        <div className="squares">
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
         </div>
       </div>
-      <div class="grey"></div>
+      <div className="grey"></div>
     </Container>
   );
 }

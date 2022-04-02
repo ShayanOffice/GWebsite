@@ -3,10 +3,13 @@ export default function useHorizontalScroller(
   scrollerRef,
   progressBarRef,
   scrollPathRef,
-  bgRef
+  bgRef,
+  pageCount,
+  setPageCount
 ) {
   const [completion, setCompletion] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+
+  let scrollLeft = 0;
 
   let scroller = scrollerRef.current;
   let progressBar = progressBarRef.current;
@@ -21,7 +24,6 @@ export default function useHorizontalScroller(
 
     /* Get the documentElement (<html>) to display the page in fullscreen */
     var elem = document.documentElement;
-
     function openFullscreen(event) {
       if (event.keyCode === 13 || event.keyCode === 32) {
         if (elem.requestFullscreen) {
@@ -51,33 +53,15 @@ export default function useHorizontalScroller(
         }
       }
     }
-    scroller.scrollTo({
-      left: 0,
-      behavior: "smooth",
-    });
-    bg.scrollTo({
-      left: 0,
-      behavior: "smooth",
-    });
 
-    let scrollProgress = Math.ceil(
-      (scroller.scrollLeft / (scroller.scrollWidth - scroller.clientWidth)) *
-        100
-    );
-    setCompletion(scrollProgress);
+    resetCompletion();
+
+    let scrollProgress = updateCompletion();
+
     const scrollHorizontally = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
-      // console.log(e.deltaY);
-      scrollProgress = Math.ceil(
-        (Math.min(
-          scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
-          scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-        ) /
-          (scroller.scrollWidth - scroller.clientWidth)) *
-          100
-      );
-      setCompletion(scrollProgress);
+      scrollProgress = updateCompletion();
 
       scroller.scrollTo({
         left: Math.min(
@@ -86,6 +70,7 @@ export default function useHorizontalScroller(
         ),
         behavior: "smooth",
       });
+      scrollProgress = updateCompletion();
 
       if (e.deltaY > 0) {
         if (
@@ -114,12 +99,8 @@ export default function useHorizontalScroller(
     };
 
     const updateScrollProgress = () => {
-      let scrollProgress = Math.ceil(
-        (scroller.scrollLeft / (scroller.scrollWidth - scroller.clientWidth)) *
-          100
-      );
-      setCompletion(scrollProgress);
-      setScrollLeft(scroller.scrollLeft);
+      updateCompletion();
+      scrollLeft = scroller.scrollLeft;
     };
 
     const handleClick = (event) => {
@@ -140,7 +121,6 @@ export default function useHorizontalScroller(
       } else {
       }
       if (progressBar) progressBar.style.width = posXFact + "%";
-      // console.log(targetScrollpx);
     };
 
     scroller.addEventListener("scroll", updateScrollProgress);
@@ -157,11 +137,65 @@ export default function useHorizontalScroller(
       document.removeEventListener("keydown", closeFullscreen);
       scrollPath.removeEventListener("mousedown", handleClick);
     };
+
+    function updateCompletion() {
+      let scrollProgress = Math.min(
+        Math.ceil(
+          (scroller.scrollLeft /
+            (scroller.scrollWidth - scroller.clientWidth)) *
+            100
+        ),
+        100
+      );
+      setCompletion(scrollProgress);
+      return scrollProgress;
+    }
+
+    function resetCompletion() {
+      scroller.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+      bg.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   }, []);
+
   useEffect(() => {
     if (!progressBar) progressBar = progressBarRef.current;
     if (progressBar) progressBar.style.width = completion + "%";
+    const refreshActiveDot = () => {
+      const pageNum =
+        Math.ceil(
+          (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /
+            scroller.getBoundingClientRect().width
+        ) - 1;
+      if (pageCount.active !== pageNum) {
+        setPageCount((prev) => ({ ...prev, active: pageNum }));
+        // console.log(pageNum);
+      }
+    };
+    const interval = setInterval(() => {
+      refreshActiveDot();
+    }, 100);
+    return () => clearInterval(interval);
   }, [completion]);
+
+  useEffect(() => {
+    // console.log("clicked");
+
+    let targetPx = pageCount.active * scroller.getBoundingClientRect().width;
+    scroller.scrollTo({
+      left: targetPx,
+      behavior: "smooth",
+    });
+
+    if (!progressBar) progressBar = progressBarRef.current;
+    if (progressBar) progressBar.style.width = completion + "%";
+  }, [pageCount]);
+
   return {
     scrollLeft,
     completion,
