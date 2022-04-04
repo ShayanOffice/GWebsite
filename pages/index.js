@@ -17,7 +17,6 @@ const Container = styled.div`
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
-
   .main {
     touch-action: pan-y;
     scroll-snap-type: x mandatory;
@@ -33,29 +32,29 @@ const Container = styled.div`
       flex: none;
       width: 100vw;
       height: 95vh;
-      /* height: ${(props) =>
-        `calc(100vh - ` + props.scrollbarWidth + `px)`}; */
       scroll-snap-align: start;
       z-index: 100;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       margin: 0;
       padding: 0;
       background: none;
-      h1 {
-        font-family: "Luckiest Guy", cursive;
-        /* font-family: "Amatic SC", cursive; */
-        /* font-family: 'Indie Flower', cursive; */
-        /* font-family: 'IM Fell English SC', serif; */
-        /* font-family: 'Gamja Flower', cursive; */
+      transform-style: preserve-3d;
+      perspective-origin: center;
+    }
+    h1 {
+      font-family: "Luckiest Guy", cursive;
+      /* font-family: "Amatic SC", cursive; */
+      /* font-family: 'Indie Flower', cursive; */
+      /* font-family: 'IM Fell English SC', serif; */
+      /* font-family: 'Gamja Flower', cursive; */
 
-        margin: 0;
-        font-size: xxx-large;
-        color: #323;
-        /* font-weight: bold; */
-      }
+      margin: 0;
+      font-size: xxx-large;
+      color: #323;
+      /* font-weight: bold; */
     }
   }
 `;

@@ -139,8 +139,6 @@ export default function useHorizontalScroller(
       const firstTouch = getTouches(evt)[0];
       xDown = firstTouch.clientX;
       yDown = firstTouch.clientY;
-
-
     }
 
     function handleTouchMove(evt) {
@@ -156,7 +154,6 @@ export default function useHorizontalScroller(
       var yDiff = yDown - yUp;
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
@@ -169,7 +166,7 @@ export default function useHorizontalScroller(
             behavior: "smooth",
           });
           scrollProgress = updateCompletion();
-          
+
           // console.log("right");
           if (
             scroller.scrollLeft <
@@ -209,13 +206,6 @@ export default function useHorizontalScroller(
       } else {
         if (yDiff > 0) {
           /* up swipe */
-          // scroller.scrollTo({
-          //   top: Math.min(
-          //     scroller.scrollTop + (100 * window.innerHeight) / 170,
-          //     scroller.scrollHeight - scroller.getBoundingClientRect().height - 1
-          //   ),
-          //   behavior: "smooth",
-          // });
           // console.log("up");
         } else {
           /* down swipe */
