@@ -9,15 +9,17 @@ import BGCurves from "../components/BGCurves";
 import BlobOverlay from "../components/BlobOverlay";
 import Dots from "../components/Dots";
 import ProgressBar from "../components/ProgressBar";
+import SideBar from "../components/SideBar";
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
 
   .main {
+    touch-action: pan-y;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     overflow-y: hidden;
@@ -30,7 +32,7 @@ const Container = styled.div`
     section {
       flex: none;
       width: 100vw;
-      height: 100vh;
+      height: 95vh;
       /* height: ${(props) =>
         `calc(100vh - ` + props.scrollbarWidth + `px)`}; */
       scroll-snap-align: start;
@@ -81,8 +83,8 @@ export default function Home() {
     let scroller = scrollerRef.current;
     let count = 0;
     if (scroller) {
-      // count = scroller.childNodes.length;
-      count = scroller.scrollWidth / scroller.getBoundingClientRect().width - 1;
+      count = scroller.childNodes.length;
+      // count = scroller.scrollWidth / scroller.getBoundingClientRect().width - 1;
     }
     if (pageCount.count !== count) setPageCount((prev) => ({ ...prev, count }));
     // console.log(pageCount);
@@ -100,7 +102,7 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         ></meta>
-        <link rel="icon" href="/favicon2.svg" />
+        <link rel="icon" href="/svg/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -108,12 +110,12 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-
-      <Particles />
-      <BGCurves ref={bgRef} />
-      <BlobOverlay />
+      <SideBar />
       <Dots pageCount={pageCount} setSelectedDot={setSelectedDot} />
       <ProgressBar refs={{ progressBarRef, scrollPathRef }} />
+      <BlobOverlay />
+      <Particles />
+      <BGCurves ref={bgRef} />
 
       <div className="main" ref={scrollerRef}>
         <section>

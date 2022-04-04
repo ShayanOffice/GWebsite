@@ -11,7 +11,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: -5vh;
   z-index: 1;
   display: flex;
   align-items: flex-end;
@@ -67,6 +67,9 @@ const BGCurves = React.forwardRef((props, ref) => {
             height: '500px',
           }}
         /> */}
+      <Anim />
+      <Anim />
+      <Anim />
       <Anim />
       <Anim />
       <Anim />
