@@ -44,15 +44,21 @@ const Container = styled.div`
   }
 `;
 
-export default function Dots({ pageCount, setSelectedDot }) {
+export default function Dots({ pageCount, setSelectedDot, setSensedClick }) {
   const dots = () => {
     let pages = [];
     for (let i = 0; i < pageCount.count; i++)
       pages.push({ active: i === pageCount.active });
-    // console.log(pages);
     return pages.map((item, index) =>
       item.active ? (
-        <span key={index} style={{ fontWeight: "bold" }}>
+        <span
+          key={index}
+          style={{ fontWeight: "bold" }}
+          onClick={() => {
+            setSelectedDot(index);
+            setSensedClick(Math.random());
+          }}
+        >
           <h1>.</h1>
         </span>
       ) : (
@@ -60,6 +66,7 @@ export default function Dots({ pageCount, setSelectedDot }) {
           key={index}
           onClick={() => {
             setSelectedDot(index);
+            setSensedClick(Math.random());
           }}
         >
           <h1>.</h1>

@@ -7,21 +7,54 @@ export default function useHorizontalScroller(
   pageCount,
   setPageCount,
   selectedDot,
-  setSelectedDot
+  setSelectedDot,
+  sensedClick
 ) {
   const [completion, setCompletion] = useState(0);
-
   let scrollLeft = 0;
 
   let scroller = scrollerRef.current;
   let progressBar = progressBarRef.current;
   let scrollPath = scrollPathRef.current;
-
   let bg = bgRef.current;
+
+  function ScrollSecondary(delta, Primary, Sec) {
+    if (delta > 0) {
+      if (
+        Primary.scrollLeft <
+        Primary.scrollWidth - Primary.getBoundingClientRect().width - 1
+      ) {
+        Sec.scrollTo({
+          left: Math.min(
+            Sec.scrollLeft + (delta * window.innerWidth) / 390,
+            Sec.scrollWidth - Sec.getBoundingClientRect().width - 1
+          ),
+          behavior: "smooth",
+        });
+      }
+    } else {
+      if (Primary.scrollLeft > 0) {
+        Sec.scrollTo({
+          left: Math.max(Sec.scrollLeft + (delta * window.innerWidth) / 390, 0),
+          behavior: "smooth",
+        });
+      }
+    }
+  }
+
+  function ScrollEndCapped(scrollable, delta, divisionFactor) {
+    scrollable.scrollTo({
+      left: Math.min(
+        scrollable.scrollLeft + (delta * window.innerWidth) / divisionFactor,
+        scrollable.scrollWidth - scrollable.getBoundingClientRect().width - 1
+      ),
+      behavior: "smooth",
+    });
+  }
+
   useEffect(() => {
     if (!scroller) scroller = scrollerRef.current;
     if (!scrollPath) scrollPath = scrollPathRef.current;
-
     if (!bg) bg = bgRef.current;
 
     /* Get the documentElement (<html>) to display the page in fullscreen */
@@ -57,47 +90,16 @@ export default function useHorizontalScroller(
     }
 
     resetCompletion();
-
     let scrollProgress = updateCompletion();
-
-    const scrollHorizontally = (e) => {
+    const handleWheel = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
       scrollProgress = updateCompletion();
 
-      scroller.scrollTo({
-        left: Math.min(
-          scroller.scrollLeft + (e.deltaY * window.innerWidth) / 170,
-          scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-        ),
-        behavior: "smooth",
-      });
+      ScrollEndCapped(scroller, e.deltaY, 170);
       scrollProgress = updateCompletion();
 
-      if (e.deltaY > 0) {
-        if (
-          scroller.scrollLeft <
-          scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-        ) {
-          bg.scrollTo({
-            left: Math.min(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 390,
-              bg.scrollWidth - bg.getBoundingClientRect().width - 1
-            ),
-            behavior: "smooth",
-          });
-        }
-      } else {
-        if (scroller.scrollLeft > 0) {
-          bg.scrollTo({
-            left: Math.max(
-              bg.scrollLeft + (e.deltaY * window.innerWidth) / 390,
-              0
-            ),
-            behavior: "smooth",
-          });
-        }
-      }
+      ScrollSecondary(e.deltaY, scroller, bg);
     };
 
     const updateScrollProgress = () => {
@@ -113,8 +115,6 @@ export default function useHorizontalScroller(
         left: targetScrollpx,
         behavior: "smooth",
       });
-      const delta = completion - posXFact;
-
       if (posXFact > 0) {
         bg.scrollTo({
           left: targetScrollpx,
@@ -127,20 +127,17 @@ export default function useHorizontalScroller(
 
     var xDown = null;
     var yDown = null;
-
     function getTouches(evt) {
       return (
         evt.touches || // browser API
         evt.originalEvent.touches
       ); // jQuery
     }
-
     function handleTouchStart(evt) {
       const firstTouch = getTouches(evt)[0];
       xDown = firstTouch.clientX;
       yDown = firstTouch.clientY;
     }
-
     function handleTouchMove(evt) {
       // evt.preventDefault();
       if (!xDown || !yDown) {
@@ -157,59 +154,23 @@ export default function useHorizontalScroller(
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
-
-          scroller.scrollTo({
-            left: Math.min(
-              scroller.scrollLeft + (100 * window.innerWidth) / 170,
-              scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-            ),
-            behavior: "smooth",
-          });
+          ScrollEndCapped(scroller, 100, 170);
           scrollProgress = updateCompletion();
-
-          // console.log("right");
-          if (
-            scroller.scrollLeft <
-            scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-          ) {
-            bg.scrollTo({
-              left: Math.min(
-                bg.scrollLeft + (100 * window.innerWidth) / 390,
-                bg.scrollWidth - bg.getBoundingClientRect().width - 1
-              ),
-              behavior: "smooth",
-            });
-          }
+          ScrollSecondary(100, scroller, bg);
+          scrollProgress = updateCompletion();
         } else {
           /* left swipe */
-          scroller.scrollTo({
-            left: Math.min(
-              scroller.scrollLeft + (-100 * window.innerWidth) / 170,
-              scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-            ),
-            behavior: "smooth",
-          });
+          ScrollEndCapped(scroller, -100, 170);
           scrollProgress = updateCompletion();
-
-          if (scroller.scrollLeft > 0) {
-            bg.scrollTo({
-              left: Math.max(
-                bg.scrollLeft + (-100 * window.innerWidth) / 390,
-                0
-              ),
-              behavior: "smooth",
-            });
-          }
-
+          ScrollSecondary(-100, scroller, bg);
+          scrollProgress = updateCompletion();
           // console.log("left");
         }
       } else {
         if (yDiff > 0) {
           /* up swipe */
-          // console.log("up");
         } else {
           /* down swipe */
-          // console.log("down");
         }
       }
       /* reset values */
@@ -219,7 +180,7 @@ export default function useHorizontalScroller(
 
     scroller.addEventListener("scroll", updateScrollProgress);
     scroller.addEventListener("wheel", updateScrollProgress);
-    scroller.addEventListener("wheel", scrollHorizontally);
+    scroller.addEventListener("wheel", handleWheel);
     scroller.addEventListener("touchstart", handleTouchStart, {
       passive: false,
     });
@@ -230,7 +191,7 @@ export default function useHorizontalScroller(
     return () => {
       scroller.removeEventListener("scroll", updateScrollProgress);
       scroller.removeEventListener("wheel", updateScrollProgress);
-      scroller.removeEventListener("wheel", scrollHorizontally);
+      scroller.removeEventListener("wheel", handleWheel);
       scroller.removeEventListener("touchstart", handleTouchStart, {
         passive: false,
       });
@@ -276,48 +237,23 @@ export default function useHorizontalScroller(
         (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /
           scroller.getBoundingClientRect().width
       ) - 1;
+
     if (pageCount.active !== pageNum) {
       setPageCount((prev) => ({ ...prev, active: pageNum }));
-      // console.log(pageNum);
     }
   }, [completion]);
 
   useEffect(() => {
-    // console.log("clicked");
-
     let targetPx = selectedDot * scroller.getBoundingClientRect().width;
     scroller.scrollTo({
       left: targetPx,
       behavior: "smooth",
     });
     let delta = (selectedDot - pageCount.active) * 100;
-
-    if (delta > 0) {
-      if (
-        scroller.scrollLeft <
-        scroller.scrollWidth - scroller.getBoundingClientRect().width - 1
-      ) {
-        bg.scrollTo({
-          left: Math.min(
-            bg.scrollLeft + (delta * window.innerWidth) / 390,
-            bg.scrollWidth - bg.getBoundingClientRect().width - 1
-          ),
-          behavior: "smooth",
-        });
-      }
-    } else {
-      if (scroller.scrollLeft > 0) {
-        bg.scrollTo({
-          left: Math.max(bg.scrollLeft + (delta * window.innerWidth) / 390, 0),
-          behavior: "smooth",
-        });
-      }
-    }
-
+    ScrollSecondary(delta, scroller, bg);
     if (!progressBar) progressBar = progressBarRef.current;
     if (progressBar) progressBar.style.width = completion + "%";
-  }, [selectedDot]);
-
+  }, [sensedClick]);
   return {
     scrollLeft,
     completion,
