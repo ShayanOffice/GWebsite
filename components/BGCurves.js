@@ -12,6 +12,10 @@ const Container = styled.div`
   height: 100%;
   position: absolute;
   bottom: -5vh;
+  @media (max-width: 768px) {
+    bottom: -15vh;
+    /* height: 50vh; */
+  }
   z-index: 1;
   display: flex;
   align-items: flex-end;

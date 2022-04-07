@@ -8,7 +8,9 @@ const Container = styled.div`
   bottom: 0;
   margin: 0;
   padding: 0;
-
+  @media (max-width: 768px) {
+    height: 92vh;
+  }
   /* position: absolute; */
   z-index: 200;
   top: 0;
@@ -26,7 +28,7 @@ const Container = styled.div`
 
     font-family: "Amatic SC", cursive;
     font-size: 110px;
-    height: 50;
+    height: 50px;
     overflow: hidden;
     width: 25px;
     display: flex;

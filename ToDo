@@ -1,6 +1,5 @@
 Todo:
-    CleanUp UseScrollHorizontally
-    Make Arrow keys scroll Everything
+
     page contents
     Logo Animations
     wallet page
@@ -11,7 +10,8 @@ Todo:
 Done:
     CleanUp the Project
         Separate Components.
-
+        CleanUp UseScrollHorizontally
+    Make Arrow keys scroll Everything
     Particles
     CleanUp the Project
     Bottom Dots

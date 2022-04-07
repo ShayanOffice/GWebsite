@@ -56,50 +56,30 @@ export default function useHorizontalScroller(
     if (!scroller) scroller = scrollerRef.current;
     if (!scrollPath) scrollPath = scrollPathRef.current;
     if (!bg) bg = bgRef.current;
-
-    /* Get the documentElement (<html>) to display the page in fullscreen */
-    var elem = document.documentElement;
-    function openFullscreen(event) {
-      if (event.keyCode === 13 || event.keyCode === 32) {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          /* Safari */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          /* IE11 */
-          elem.msRequestFullscreen();
-        }
-      }
-    }
-    function closeFullscreen(event) {
-      if (
-        (event.keyCode === 13 || event.keyCode === 32) &&
-        document.fullscreenElement
-      ) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          /* Safari */
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          /* IE11 */
-          document.msExitFullscreen();
-        }
-      }
-    }
-
     resetCompletion();
-    let scrollProgress = updateCompletion();
+
+    function handleKeyDown(event) {
+      handleArrowKeys(event);
+    }
+
     const handleWheel = (e) => {
       if (e.deltaY == 0) return;
       e.preventDefault();
-      scrollProgress = updateCompletion();
-
       ScrollEndCapped(scroller, e.deltaY, 170);
-      scrollProgress = updateCompletion();
-
       ScrollSecondary(e.deltaY, scroller, bg);
+    };
+
+
+    const handleArrowKeys = (event) => {
+      if (event.keyCode === 39 || event.keyCode === 40) {
+        event.preventDefault();
+        ScrollEndCapped(scroller, 100, 170);
+        ScrollSecondary(100, scroller, bg);
+      } else if (event.keyCode === 37 || event.keyCode === 38) {
+        event.preventDefault();
+        ScrollEndCapped(scroller, -100, 170);
+        ScrollSecondary(-100, scroller, bg);
+      }
     };
 
     const updateScrollProgress = () => {
@@ -109,24 +89,25 @@ export default function useHorizontalScroller(
 
     const handleClick = (event) => {
       const posXFact = (event.clientX / scroller.clientWidth) * 100;
-      const targetScrollpx =
-        (posXFact * (scroller.scrollWidth - scroller.clientWidth)) / 100;
+      const getTargetPx = (scrollable, factor) => {
+        return (
+          (factor * (scrollable.scrollWidth - scrollable.clientWidth)) / 100
+        );
+      };
       scroller.scrollTo({
-        left: targetScrollpx,
+        left: getTargetPx(scroller, posXFact),
         behavior: "smooth",
       });
-      if (posXFact > 0) {
-        bg.scrollTo({
-          left: targetScrollpx,
-          behavior: "smooth",
-        });
-      } else {
-      }
+      bg.scrollTo({
+        left: getTargetPx(bg, posXFact),
+        behavior: "smooth",
+      });
       if (progressBar) progressBar.style.width = posXFact + "%";
     };
 
     var xDown = null;
     var yDown = null;
+
     function getTouches(evt) {
       return (
         evt.touches || // browser API
@@ -155,16 +136,11 @@ export default function useHorizontalScroller(
         if (xDiff > 0) {
           /* right swipe */
           ScrollEndCapped(scroller, 100, 170);
-          scrollProgress = updateCompletion();
           ScrollSecondary(100, scroller, bg);
-          scrollProgress = updateCompletion();
         } else {
           /* left swipe */
           ScrollEndCapped(scroller, -100, 170);
-          scrollProgress = updateCompletion();
           ScrollSecondary(-100, scroller, bg);
-          scrollProgress = updateCompletion();
-          // console.log("left");
         }
       } else {
         if (yDiff > 0) {
@@ -178,28 +154,26 @@ export default function useHorizontalScroller(
       yDown = null;
     }
 
+    scroller.addEventListener("wheel", handleWheel);
     scroller.addEventListener("scroll", updateScrollProgress);
     scroller.addEventListener("wheel", updateScrollProgress);
-    scroller.addEventListener("wheel", handleWheel);
     scroller.addEventListener("touchstart", handleTouchStart, {
       passive: false,
     });
     scroller.addEventListener("touchmove", handleTouchMove, { passive: false });
-    document.addEventListener("keydown", openFullscreen);
-    document.addEventListener("keydown", closeFullscreen);
+    document.addEventListener("keydown", handleKeyDown);
     scrollPath.addEventListener("mousedown", handleClick);
     return () => {
+      scroller.removeEventListener("wheel", handleWheel);
       scroller.removeEventListener("scroll", updateScrollProgress);
       scroller.removeEventListener("wheel", updateScrollProgress);
-      scroller.removeEventListener("wheel", handleWheel);
       scroller.removeEventListener("touchstart", handleTouchStart, {
         passive: false,
       });
       scroller.removeEventListener("touchmove", handleTouchMove, {
         passive: false,
       });
-      document.removeEventListener("keydown", openFullscreen);
-      document.removeEventListener("keydown", closeFullscreen);
+      document.removeEventListener("keydown", handleKeyDown);
       scrollPath.removeEventListener("mousedown", handleClick);
     };
 
@@ -231,7 +205,7 @@ export default function useHorizontalScroller(
   useEffect(() => {
     if (!progressBar) progressBar = progressBarRef.current;
     if (progressBar) progressBar.style.width = completion + "%";
-
+    scrollLeft = scroller.scrollLeft;
     const pageNum =
       Math.ceil(
         (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /

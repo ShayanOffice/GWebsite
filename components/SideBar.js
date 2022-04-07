@@ -4,6 +4,9 @@ const Container = styled.div`
   .icons {
     position: absolute;
     height: 97vh;
+    @media (max-width: 768px) {
+      height: 90vh;
+    }
     z-index: 200;
     left: 0;
     display: flex;
@@ -23,10 +26,10 @@ const Container = styled.div`
     margin-top: 30px;
     margin-left: 20px;
     cursor: pointer;
-    width: 3.5vh ;
+    width: 3vh;
     min-width: 26px;
     &:last-of-type {
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
   }
 `;

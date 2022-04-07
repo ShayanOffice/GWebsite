@@ -31,7 +31,7 @@ const Container = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      height: 20vh;
+      height: 100vh;
       /* background-image: linear-gradient(
         0deg,
         #000000 0%,
@@ -130,11 +130,11 @@ export default function Particles() {
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
+          {/* <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
+          <div className="square"></div> */}
         </div>
       </div>
       <div className="grey"></div>
