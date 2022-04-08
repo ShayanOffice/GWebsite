@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-export default function useHandleFullscreen(
-  router = null,
-  fullOnClick = false
-) {
+export default function useHandleFullscreen(router = null) {
   useEffect(() => {
     /* Get the documentElement (<html>) to display the page in fullscreen */
     var elem = document.documentElement;

@@ -16,10 +16,10 @@ const Container = styled.div`
   position: relative;
 `;
 
-export default function Home() {
+export default function Index() {
   const router = useRouter();
   useEffect(() => {
-    router.push("/googholy", { shallow: true });
+    router.push("/nft/googholy", { shallow: true });
   }, []);
   return (
     <Container>
@@ -30,7 +30,7 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         ></meta>
-        <link rel="icon" href="/svg/discord.svg" />
+        {/* <link rel="icon" href="/svg/discord.svg" /> */}
       </Head>
     </Container>
   );

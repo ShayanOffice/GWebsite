@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import BGCurves from "../components/BGCurves";
-import BlobOverlay from "../components/BlobOverlay";
-import AnimatedBlob from "../components/AnimatedBlob";
-import useHandleFullscreen from "../hooks/useHandleFullscreen";
-import Particles from "../components/Particles";
+import BGCurves from "../../components/BGCurves";
+import BlobOverlay from "../../components/BlobOverlay";
+import AnimatedBlob from "../../components/AnimatedBlob";
+import useHandleFullscreen from "../../hooks/useHandleFullscreen";
+import Particles from "../../components/Particles";
 
 const Container = styled.div`
   width: 100vw;
@@ -88,7 +88,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Home() {
+export default function Googholy() {
   const router = useRouter();
   const HandleFullscreen = useHandleFullscreen(router);
   return (

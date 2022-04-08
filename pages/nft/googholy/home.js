@@ -92,7 +92,7 @@ export default function Home() {
     let count = 0;
     if (scroller) {
       count = scroller.childNodes.length;
-      // count = scroller.scrollWidth / scroller.getBoundingClientRect().width - 1;
+      // count = scroller.scrollWidth / scroller.getBoundingClientRect().width;
     }
     if (pageCount.count !== count) setPageCount((prev) => ({ ...prev, count }));
     // console.log(pageCount);
