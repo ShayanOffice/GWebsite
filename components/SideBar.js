@@ -4,9 +4,9 @@ const Container = styled.div`
   .icons {
     /* margin-top: 50px; */
     position: fixed;
-    height: 97vh;
+    height: 100vh;
     @media (max-width: 768px) {
-      height: 96vh;
+      height: 94vh;
     }
     z-index: 200;
     left: 0;
@@ -14,26 +14,30 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
   }
-  bg {
-    position: absolute;
-    background-color: white;
+  .bg {
+    pointer-events: none;
+
+    position: fixed;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.25);
     height: 100vh;
-    width: 20vw;
-    z-index: 190;
+    width: 75px;
     left: 0;
+    top: 0;
+    transition: all 0.7s;
   }
 
   img {
-    margin-top: 22px;
+    margin-top: 35px;
     margin-left: 20px;
     cursor: pointer;
-    width: 3vh;
-    min-width: 26px;
+    width: 2.5vh;
+    min-width: 25px;
     /* &:first-of-type {
       position: fixed;
     } */
     &:last-of-type {
-      margin-bottom: 30px;
+      margin-bottom: 27px;
     }
   }
 `;
@@ -45,9 +49,9 @@ export default function SideBar() {
       <div className="icons">
         <img src="/svg/wallet.svg" alt="wallet icon" />
         <div>
+          <img src="/svg/instagram.svg" alt="instagram icon" />
           <img src="/svg/discord.svg" alt="discord icon" />
           <img src="/svg/twitter.svg" alt="twitter icon" />
-          <img src="/svg/instagram.svg" alt="instagram icon" />
         </div>
       </div>
     </Container>

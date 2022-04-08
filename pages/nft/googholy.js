@@ -36,7 +36,8 @@ const Container = styled.div`
     }
     h2 {
       z-index: 51;
-      font-family: "Indie Flower", cursive;
+      /* font-family: "Indie Flower", cursive; */
+      font-family: 'Gloria Hallelujah', cursive;
       font-size: 5rem;
       font-weight: bold;
       line-height: 1rem;
@@ -107,7 +108,7 @@ export default function Googholy() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&family=Khand:wght@300;400;500;600;700&family=Gloria+Hallelujah&display=swap"
           rel="stylesheet"
         />
       </Head>

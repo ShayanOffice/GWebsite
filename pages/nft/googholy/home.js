@@ -12,6 +12,7 @@ import ProgressBar from "../../../components/ProgressBar";
 import SideBar from "../../../components/SideBar";
 import useHandleFullscreen from "../../../hooks/useHandleFullscreen";
 import PoweredBy from "../../../components/PoweredBy";
+import FirstPage from "../../../components/Pages/FirstPage";
 
 const Container = styled.div`
   width: 100vw;
@@ -54,7 +55,8 @@ const Container = styled.div`
       perspective-origin: center;
     }
     h1 {
-      font-family: "Luckiest Guy", cursive;
+      /* font-family: "Luckiest Guy", cursive; */
+      font-family: "Gloria Hallelujah", cursive;
       /* font-family: "Amatic SC", cursive; */
       /* font-family: 'Indie Flower', cursive; */
       /* font-family: 'IM Fell English SC', serif; */
@@ -115,7 +117,7 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&family=Khand:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&family=Khand:wght@300;400;500;600;700&family=Gloria+Hallelujah&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -133,7 +135,7 @@ export default function Home() {
 
       <div className="main" ref={scrollerRef}>
         <section>
-          <h1>Page One</h1>
+          <FirstPage />
         </section>
         <section>
           <h1>Page Two</h1>

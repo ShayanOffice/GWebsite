@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   @media (max-width: 768px) {
-    height: 96vh;
+    height: 95vh;
   }
   /* position: absolute; */
   z-index: 200;

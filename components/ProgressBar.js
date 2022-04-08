@@ -11,7 +11,7 @@ const Container = styled.div`
     min-height: 15px;
     max-height: 50px;
     background-color: rgba(170, 170, 190, 1);
-    z-index: 10;
+    z-index: 11;
     @media (max-width: 768px) {
       display: none;
     }
@@ -29,7 +29,7 @@ const Container = styled.div`
     pointer-events: none;
     transition: width 0.7s;
     animation: animate 5s ease-in-out infinite;
-    z-index: 11;
+    z-index: 12;
     @media (max-width: 768px) {
       display: none;
     }

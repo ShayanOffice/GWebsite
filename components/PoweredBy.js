@@ -11,10 +11,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* align-items: baseline; */
+  align-items: center;
   text-align: center;
   @media (max-width: 768px) {
-    height: 100vh;
+    height: 97.5vh;
   }
   div {
     display: flex;
