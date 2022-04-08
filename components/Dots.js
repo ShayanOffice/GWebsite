@@ -3,13 +3,13 @@ import styled from "styled-components";
 const Container = styled.div`
   position: absolute;
   width: 100%;
-  height: 102%;
+  height: 99vh;
   text-align: center;
   bottom: 0;
   margin: 0;
   padding: 0;
   @media (max-width: 768px) {
-    height: 92vh;
+    height: 96vh;
   }
   /* position: absolute; */
   z-index: 200;
@@ -25,7 +25,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
     font-family: "Amatic SC", cursive;
     font-size: 110px;
     height: 50px;
@@ -36,12 +35,18 @@ const Container = styled.div`
     align-items: center;
     /* font-weight: bold; */
     color: #323;
-    transition: all 1s;
+
+    /* transition: all .3s; */
     h1 {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       height: 50px;
+      &::selection {
+        background: none;
+        color: #323;
+        text-shadow: none;
+      }
     }
   }
 `;

@@ -11,15 +11,16 @@ import Dots from "../../../components/Dots";
 import ProgressBar from "../../../components/ProgressBar";
 import SideBar from "../../../components/SideBar";
 import useHandleFullscreen from "../../../hooks/useHandleFullscreen";
+import PoweredBy from "../../../components/PoweredBy";
 
 const Container = styled.div`
   width: 100vw;
-  height: 95vh;
+  height: 100vh;
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
   @media (max-width: 768px) {
-    height: 85vh;
+    height: 100vh;
   }
   .main {
     touch-action: pan-y;
@@ -32,12 +33,13 @@ const Container = styled.div`
     display: flex;
     margin: 0;
     padding: 0;
+
     section {
       flex: none;
       width: 100vw;
-      height: 95vh;
+      height: 100vh;
       @media (max-width: 768px) {
-        height: 87vh;
+        height: 95vh;
       }
       scroll-snap-align: start;
       z-index: 100;
@@ -100,7 +102,7 @@ export default function Home() {
   }, [scrollerRef]);
   return (
     <Container>
-    <Head>
+      <Head>
         <title>GooGholy NFT Project</title>
         <meta
           name="description"
@@ -113,7 +115,7 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gamja+Flower&family=IM+Fell+English+SC&family=Indie+Flower&family=Luckiest+Guy&family=Khand:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -127,6 +129,7 @@ export default function Home() {
       <BlobOverlay />
       <Particles />
       <BGCurves ref={bgRef} />
+      <PoweredBy />
 
       <div className="main" ref={scrollerRef}>
         <section>

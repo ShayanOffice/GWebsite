@@ -9,12 +9,12 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
-  bottom: -5vh;
+  /* bottom: -5vh; */
   @media (max-width: 768px) {
-    bottom: -15vh;
-    /* height: 50vh; */
+    /* bottom: -15vh; */
+    height: 100vh;
   }
   z-index: 1;
   display: flex;

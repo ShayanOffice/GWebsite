@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 const Container = styled.div`
   .icons {
-    position: absolute;
+    /* margin-top: 50px; */
+    position: fixed;
     height: 97vh;
     @media (max-width: 768px) {
-      height: 90vh;
+      height: 96vh;
     }
     z-index: 200;
     left: 0;
@@ -23,11 +24,14 @@ const Container = styled.div`
   }
 
   img {
-    margin-top: 30px;
+    margin-top: 22px;
     margin-left: 20px;
     cursor: pointer;
     width: 3vh;
     min-width: 26px;
+    /* &:first-of-type {
+      position: fixed;
+    } */
     &:last-of-type {
       margin-bottom: 30px;
     }
