@@ -21,7 +21,7 @@ const Container = styled.div`
     z-index: 10;
     background-color: rgba(255, 255, 255, 0.25);
     height: 100vh;
-    width: 75px;
+    width: 60px;
     left: 0;
     top: 0;
     transition: all 0.7s;

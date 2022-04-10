@@ -39,6 +39,12 @@ const Container = styled.div`
       flex: none;
       width: 100vw;
       height: 100vh;
+      .topLogo {
+        position: absolute;
+        top: 0;
+        width: 10vw;
+        min-width: 200px;
+      }
       @media (max-width: 768px) {
         height: 95vh;
       }
@@ -114,6 +120,7 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         ></meta>
+        <link rel="icon" href="/svg/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -135,18 +142,23 @@ export default function Home() {
 
       <div className="main" ref={scrollerRef}>
         <section>
+          {/* <img className="topLogo" src="/svg/TopLogo.svg" /> */}
           <FirstPage />
         </section>
         <section>
+        <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Two</h1>
         </section>
         <section>
+        <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Three</h1>
         </section>
         <section>
+        <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Four</h1>
         </section>
         <section>
+        <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Five</h1>
         </section>
       </div>
