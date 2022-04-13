@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 const Container = styled.div`
   pointer-events: none;
-  z-index: 100;
+  z-index: 10000;
   width: 100%;
   height: 99vh;
   margin: 0;
@@ -30,7 +30,7 @@ const Container = styled.div`
     .BOOMHUNK {
       font-family: "Khand", sans-serif;
     }
-    @media (max-width: 768px) and (orientation: landscape) {
+    @media (max-width: 480px)  {
       font-size: 15px;
       font-weight: bold;
     }

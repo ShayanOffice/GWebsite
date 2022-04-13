@@ -10,9 +10,18 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   text-align: center;
+  .bg {
+    border-radius: 20%;
+    z-index: -50;
+    filter: blur(35px);
+    width: 85%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   .leftPart {
-    width: 110%;
-    z-index: 10000000;
+    width: 100%;
+    z-index: 1;
   }
   .Logo {
     width: 100%;
@@ -21,11 +30,11 @@ const Container = styled.div`
   .Images {
     width: 100%;
     .second {
-      width: 30%;
+      width: 35%;
     }
     img {
       position: absolute;
-      width: 37%;
+      width: 42%;
       top: 45%;
       left: 75%;
 
@@ -41,8 +50,9 @@ const Container = styled.div`
 
   .Minting {
     margin-left: 15px;
+    margin-bottom: 30%;
     width: 100%;
-    height: 50%;
+    height: 30%;
     font-size: 4.5rem;
     font-weight: bold;
     line-height: 4.5rem;
@@ -50,6 +60,7 @@ const Container = styled.div`
       font-size: 2.6rem;
       font-weight: bold;
     }
+
     /* font-family: "Luckiest Guy", cursive; */
     /* font-family: "Gloria Hallelujah", cursive; */
     font-family: "Amatic SC", cursive;
@@ -66,12 +77,39 @@ const Container = styled.div`
       }
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 930px) {
     .Minting {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      line-height: 2.8rem;
+      .unit {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .Minting {
+      font-size: 2.2rem;
       line-height: 2.2rem;
       .unit {
-        font-size: 1rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    .Minting {
+      font-size: 1.8rem;
+      line-height: 1.8rem;
+      .unit {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  @media (max-width: 390px) {
+    .Minting {
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+      .unit {
+        font-size: 0.8rem;
       }
     }
   }
@@ -115,11 +153,11 @@ const Container = styled.div`
     }
   }
 
-  @media (max-aspect-ratio: 7/10) {
-    padding: 0.5rem;
+  @media (max-aspect-ratio: 32/40) {
+    padding: 0.5rem 2.9rem;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: 95%;
     .Logo {
       width: 100%;
       height: 100%;
@@ -129,11 +167,11 @@ const Container = styled.div`
       height: 100%;
       position: relative;
       .second {
-        width: 50%;
+        width: 60%;
       }
       img {
-        width: 60%;
-        top: 50%;
+        width: 70%;
+        top: 35%;
         left: 46%;
 
         &:nth-of-type(1) {
@@ -153,6 +191,51 @@ const Container = styled.div`
       .unit {
       }
     }
+    @media (max-width: 980px) {
+      .Minting {
+        font-size: 3.5rem;
+        line-height: 3.2rem;
+        .unit {
+          font-size: 2rem;
+        }
+      }
+    }
+    @media (max-width: 660px) {
+      .Minting {
+        font-size: 3rem;
+        line-height: 2.8rem;
+        .unit {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    @media (max-width: 420px) {
+      .Minting {
+        font-size: 2.2rem;
+        line-height: 2.2rem;
+        .unit {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    @media (max-width: 320px) {
+      .Minting {
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+        .unit {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    @media (max-width: 210px) {
+      .Minting {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+        .unit {
+          font-size: 0.8rem;
+        }
+      }
+    }
   }
 `;
 
@@ -161,7 +244,8 @@ export default function FirstPage() {
     <Container>
       <div className="side leftPart flex flex-col w-full h-full text-center justify-center align-middle">
         <img className="Logo" src="/svg/Logo.svg" />
-        <div className="Minting">
+        <div className="Minting relative">
+          <div className="bg h-full bg-white absolute" />
           Minting in
           <br /> 98<span className="unit">days</span>&nbsp; 16
           <span className="unit">hours</span>&nbsp; 54
