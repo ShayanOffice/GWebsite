@@ -30,6 +30,10 @@ const Container = styled.div`
     .BOOMHUNK {
       font-family: "Khand", sans-serif;
     }
+    @media (max-width: 768px) and (orientation: landscape) {
+      font-size: 15px;
+      font-weight: bold;
+    }
     span {
       &::selection {
         background: none;

@@ -8,9 +8,10 @@ const Container = styled.div`
   bottom: 0;
   margin: 0;
   padding: 0;
-  @media (max-width: 768px) {
+  @media (orientation: portrait) {
     height: 95vh;
   }
+
   /* position: absolute; */
   z-index: 200;
   top: 0;

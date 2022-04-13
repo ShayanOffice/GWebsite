@@ -8,9 +8,6 @@ const BlobOverlay = styled.div`
   top: 0;
   pointer-events: none;
   z-index: 50;
-  @media (max-width: 768px) {
-    height: 100vh;
-  }
   /* backdrop-filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
     saturate(0.88); */
   backdrop-filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7);
