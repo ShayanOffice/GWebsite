@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useEffect, useState } from "react/cjs/react.development";
 
 const Container = styled.div`
   width: 100%;
@@ -14,11 +15,14 @@ const Container = styled.div`
     border-radius: 20%;
     z-index: -50;
     filter: blur(35px);
-    width: 85%;
-    top: 35%;
+    width: 80%;
+    height: 30%;
+    min-height: 10rem;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   .leftPart {
     width: 100%;
     z-index: 1;
@@ -56,6 +60,10 @@ const Container = styled.div`
     font-size: 4.5rem;
     font-weight: bold;
     line-height: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     .unit {
       font-size: 2.6rem;
       font-weight: bold;
@@ -110,6 +118,9 @@ const Container = styled.div`
       line-height: 1.8rem;
       .unit {
         font-size: 0.8rem;
+      }
+      .mintBtnTxt {
+        font-size: 2.5rem;
       }
     }
   }
@@ -245,12 +256,19 @@ export default function FirstPage() {
       <div className="side leftPart flex flex-col w-full h-full text-center justify-center align-middle">
         <img className="Logo" src="/svg/Logo.svg" />
         <div className="Minting relative">
-          <div className="bg h-full bg-white absolute" />
-          Minting in
-          <br /> 98<span className="unit">days</span>&nbsp; 16
-          <span className="unit">hours</span>&nbsp; 54
-          <span className="unit">minutes</span>&nbsp; 33
-          <span className="unit">seconds</span>&nbsp;
+          {/* <span>
+            <div className="bg h-full bg-white absolute" />
+            Minting in
+            <br /> 98<span className="unit">days</span>&nbsp; 16
+            <span className="unit">hours</span>&nbsp; 54
+            <span className="unit">minutes</span>&nbsp; 33
+            <span className="unit">seconds</span>&nbsp;
+          </span> */}
+          <div className="flex justify-center align-middle">
+            <button className="font-bold text-white bg-lime-400 ring-lime-300 ring-4  rounded-3xl p-1 px-4  shadow-xl text-6xl sm:text-6xl md:text-7xl  lg:text-8xl xl:text-9xl flex flex-none justify-center text-center align-middle mx-12">
+            <span className="mintBtnTxt drop-shadow-md">MiNt NoW!</span>
+          </button>
+          </div>
         </div>
       </div>
       <div className="side rightPart flex flex-col w-full h-full text-center justify-center align-middle">
