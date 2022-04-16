@@ -147,17 +147,6 @@ const Container = styled.div`
     text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff,
       0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff;
   }
-  @media (max-height: 768px) {
-    .evolutionPrice {
-      /* font-size: 1rem; */
-      /* line-height: 1.8rem; */
-      img {
-        height: 50%;
-        bottom: 10%;
-        /* width: 90%; */
-      }
-    }
-  }
 
   @media (max-width: 1800px) {
     .columnTitle {
@@ -182,8 +171,9 @@ const Container = styled.div`
       font-size: 1.6rem;
     }
     .textContent {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       line-height: 1.4rem;
+      
     }
   }
   @media (max-width: 500px) {
@@ -193,29 +183,89 @@ const Container = styled.div`
     .textContent {
       font-size: 1.1rem;
       line-height: 1.2rem;
+      margin-bottom: 0%;
     }
   }
   @media (max-width: 390px) {
     .columnTitle {
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
     .textContent {
       font-size: 1rem;
       line-height: 1.2rem;
+
     }
   }
 
   /* ///////////////////////// */
-  @media (max-height: 900px) {
-    .textContent {
-      margin-bottom: 1%;
+  @media (orientation: portrait) {
+    @media (max-height: 900px) {
+      .priceColumn {
+        * {
+          font-size: 1.3rem;
+          span {
+            font-size: 1.3rem;
+          }
+        }
+        img {
+          height: 40%;
+        }
+      }
+      .textContent {
+        margin-bottom: 1%;
+        /* font-size: 1.3rem; */
+      }
     }
-  }
-  @media (max-height: 670px) {
-    .textContent {
-      margin-bottom: 0%;
-      /* font-size: 1.3rem;
-      line-height: 1.3rem; */
+    @media (max-height: 678px) {
+      .priceColumn {
+        * {
+          font-size: 1rem;
+          span {
+            font-size: 1rem;
+          }
+        }
+        img {
+          height: 40%;
+        }
+      }
+      .textContent {
+        margin-bottom: 0%;
+        font-size: 1.2rem;
+      }
+    }
+    @media (max-height: 520px) {
+      .priceColumn {
+        * {
+          font-size: 0.8rem;
+          span {
+            font-size: 0.8rem;
+          }
+        }
+        img {
+          height: 40%;
+        }
+      }
+      .textContent {
+        margin-bottom: 0%;
+        font-size: 1.1rem;
+      }
+    }
+    @media (max-height: 450px) {
+      .priceColumn {
+        * {
+          font-size: 0.9rem;
+          span {
+            font-size: 0.9rem;
+          }
+        }
+        img {
+          visibility: hidden;
+        }
+      }
+      .textContent {
+        margin-bottom: 0%;
+        font-size: 0.9rem;
+      }
     }
   }
 `;
@@ -235,7 +285,7 @@ export default function Details() {
           <span className="evolutionPrice flex flex-col justify-center align-middle">
             <span>0.05 weth</span>
             {/* <span>Evolution Cost</span> */}
-            <img src="/svg/EvArrow.svg" alt="evolution price arrow" />
+            <img src="/svg/EvArrow.svg" alt="evolution price arrow" ></img>
           </span>
         </div>
         <div className="priceColumn">
