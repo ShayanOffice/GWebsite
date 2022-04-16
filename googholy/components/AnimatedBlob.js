@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Lottie from "lottie-react";
 import { useLottie } from "lottie-react";
-import blob_animation from "../animations/animated_blob.json";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import blob_animation from "../../animations/animated_blob.json";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Container = styled.div`
   margin: 0;

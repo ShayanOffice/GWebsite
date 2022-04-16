@@ -8,9 +8,9 @@ const Container = styled.div`
   z-index: 20;
   position: absolute;
   overflow-y: hidden;
-  border: 3px solid rgba(0, 0, 0, 0.5);
-  border-right: 11px solid rgba(0, 0, 0, 0.5);
-  border-top: 5px solid rgba(0, 0, 0, 0.7);
+  border: 3px solid rgba(0, 0, 0, 0.7);
+  /* border-right: 11px solid rgba(0, 0, 0, 0.5); */
+  /* border-top: 5px solid rgba(0, 0, 0, 0.7); */
   .white {
     height: 95vh;
     &:before {

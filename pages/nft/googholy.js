@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import BGCurves from "../../components/BGCurves";
-import BlobOverlay from "../../components/BlobOverlay";
-import AnimatedBlob from "../../components/AnimatedBlob";
+import BGCurves from "../../googholy/components/BGCurves";
+import BlobOverlay from "../../googholy/components/BlobOverlay";
+import AnimatedBlob from "../../googholy/components/AnimatedBlob";
 import useHandleFullscreen from "../../hooks/useHandleFullscreen";
-import Particles from "../../components/Particles";
+import Particles from "../../googholy/components/Particles";
 
 const Container = styled.div`
   width: 100vw;

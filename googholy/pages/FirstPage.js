@@ -12,16 +12,22 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   text-align: center;
+  .mintNow {
+    text-shadow: 0px 1px 4px #000;
+    .mintBtnText {
+      text-shadow: 0px 1px 4px #000;
+    }
+  }
   .bg {
-    border-radius: 20%;
+    border-radius: 15%;
     z-index: -50;
-    filter: blur(35px);
+    filter: blur(40px);
     width: 80%;
-    height: 30%;
+    height: 50%;
     min-height: 10rem;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -90%);
   }
 
   .leftPart {
@@ -54,9 +60,9 @@ const Container = styled.div`
   }
 
   .Minting {
-    margin-left: 15px;
+    margin-left: 25px;
     width: 100%;
-    height: 30%;
+    height: 50%;
     font-size: 4.5rem;
     font-weight: bold;
     line-height: 4.5rem;
@@ -88,7 +94,7 @@ const Container = styled.div`
       }
     }
   }
-  @media (max-width: 930px) {
+  @media (max-width: 980px) {
     .Minting {
       font-size: 3rem;
       line-height: 2.8rem;
@@ -97,30 +103,33 @@ const Container = styled.div`
       }
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 780px) {
+    .bg {
+      top: 65%;
+    }
     .Minting {
-      font-size: 2.2rem;
-      line-height: 2.2rem;
+      font-size: 1.7rem;
+      line-height: 1.6rem;
       .unit {
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
     }
   }
   @media (max-width: 500px) {
     .Minting {
-      font-size: 1.8rem;
-      line-height: 1.8rem;
+      font-size: 1.5rem;
+      line-height: 1.4rem;
       .unit {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
     }
   }
   @media (max-width: 390px) {
     .Minting {
       font-size: 1.5rem;
-      line-height: 1.8rem;
+      line-height: 1.4rem;
       .unit {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       .mintBtnTxt {
         font-size: 2.5rem;
@@ -183,9 +192,9 @@ const Container = styled.div`
     padding: 0.5rem 2.9rem;
     flex-direction: column;
     justify-content: center;
-    height: 95%;
+    height: 100%;
     .Logo {
-      width: 100%;
+      width: 95%;
       height: 100%;
     }
     .Images {
@@ -228,8 +237,8 @@ const Container = styled.div`
     }
     @media (max-width: 660px) {
       .Minting {
-        font-size: 3rem;
-        line-height: 2.8rem;
+        font-size: 2.5rem;
+        line-height: 2.4rem;
         .unit {
           font-size: 1.5rem;
         }
@@ -253,7 +262,7 @@ const Container = styled.div`
         }
       }
     }
-    @media (max-width: 210px) {
+    @media (max-width: 282px) {
       .Minting {
         font-size: 1.5rem;
         line-height: 1.8rem;
@@ -265,21 +274,27 @@ const Container = styled.div`
   }
 `;
 
-export default function Intro() {
+export default function FirstPage() {
   return (
     <Container>
       <div className="side leftPart flex flex-col w-full h-full text-center justify-center align-middle">
         <img className="Logo" src="/svg/Logo.svg" />
         <div className="Minting relative">
           <span>
-            <div className="bg h-full bg-white absolute" />
+            <div className="bg h-full bg-white absolute">
+              Minting in
+              <br /> 98<span className="unit">days</span>&nbsp; 16
+              <span className="unit">hours</span>&nbsp; 54
+              <span className="unit">minutes</span>&nbsp; 33
+              <span className="unit">seconds</span>&nbsp;
+            </div>
             Minting in
             <br /> 98<span className="unit">days</span>&nbsp; 16
             <span className="unit">hours</span>&nbsp; 54
             <span className="unit">minutes</span>&nbsp; 33
             <span className="unit">seconds</span>&nbsp;
           </span>
-          {/* <div className="flex justify-center align-middle">
+          {/* <div className="mintNow flex justify-center align-middle">
             <button className="font-bold text-white bg-lime-400 ring-lime-300 ring-4  rounded-3xl p-1 px-4  shadow-xl text-6xl sm:text-6xl md:text-7xl  lg:text-8xl xl:text-9xl flex flex-none justify-center text-center align-middle mx-12">
               <span className="mintBtnTxt drop-shadow-md">MiNt NoW!</span>
             </button>

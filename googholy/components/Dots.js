@@ -8,7 +8,7 @@ const Container = styled.div`
   bottom: 0;
   margin: 0;
   padding: 0;
-  @media (orientation: portrait) {
+  @media (max-aspect-ratio: 32/40) {
     height: 95vh;
   }
 
@@ -30,7 +30,7 @@ const Container = styled.div`
     font-size: 110px;
     height: 50px;
     overflow: hidden;
-    width: 25px;
+    width: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,6 +43,7 @@ const Container = styled.div`
       justify-content: center;
       align-items: flex-end;
       height: 50px;
+      text-shadow: 0px 1px 4px #fff;
       &::selection {
         background: none;
         color: #323;
@@ -67,7 +68,7 @@ export default function Dots({ pageCount, setSelectedDot, setSensedClick }) {
             setSensedClick(Math.random());
           }}
         >
-          <h1>.</h1>
+          <h1 style={{ textShadow: "0px 3px 2px #fff" }}>.</h1>
         </span>
       ) : (
         <span

@@ -13,7 +13,7 @@ const Container = styled.div`
   justify-content: flex-end;
   align-items: center;
   text-align: center;
-  @media (max-width: 768px) {
+  @media (max-aspect-ratio: 32/40) {
     height: 97.5vh;
   }
   div {
@@ -25,14 +25,15 @@ const Container = styled.div`
     margin: 0;
     font-size: 22px;
     color: #323;
-    font-weight: bold;
+    font-weight: bolder;
     cursor: default;
+    text-shadow: 0px 1px 5px #fff;
     .BOOMHUNK {
       font-family: "Khand", sans-serif;
+      font-weight: 600;
     }
-    @media (max-width: 480px)  {
-      font-size: 15px;
-      font-weight: bold;
+    @media (max-width: 480px) {
+      font-size: 18px;
     }
     span {
       &::selection {

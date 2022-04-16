@@ -18,6 +18,29 @@ export default function useHorizontalScroller(
   let scrollPath = scrollPathRef.current;
   let bg = bgRef.current;
 
+  function updateCompletion() {
+    let scrollProgress = Math.min(
+      Math.ceil(
+        (scroller.scrollLeft / (scroller.scrollWidth - scroller.clientWidth)) *
+          100
+      ),
+      100
+    );
+    setCompletion(scrollProgress);
+    return scrollProgress;
+  }
+
+  function resetCompletion() {
+    scroller.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+    bg.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
   function ScrollSecondary(delta, Primary, Sec) {
     if (delta > 0) {
       if (
@@ -50,6 +73,7 @@ export default function useHorizontalScroller(
       ),
       behavior: "smooth",
     });
+    updateCompletion();
   }
 
   useEffect(() => {
@@ -58,9 +82,36 @@ export default function useHorizontalScroller(
     if (!bg) bg = bgRef.current;
     resetCompletion();
 
+    var elem = document.documentElement;
     function handleKeyDown(event) {
       handleArrowKeys(event);
+      handleFullscreen(event);
     }
+
+    const handleFullscreen = (event) => {
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        // entering fullscreen
+
+        scrollLeft = scroller.scrollLeft;
+        const pageNum =
+          Math.ceil(
+            (scroller.scrollLeft + scroller.getBoundingClientRect().width / 2) /
+              scroller.getBoundingClientRect().width
+          ) - 1;
+        const intervalId = setInterval(() => {
+          console.log(pageNum);
+          let targetPx = pageNum * scroller.getBoundingClientRect().width;
+          scroller.scrollTo({
+            left: targetPx,
+            behavior: "smooth",
+          });
+          
+          updateCompletion();
+          // resetCompletion();
+          clearInterval(intervalId);
+        }, 100);
+      }
+    };
 
     const handleWheel = (e) => {
       if (e.deltaY == 0) return;
@@ -68,7 +119,6 @@ export default function useHorizontalScroller(
       ScrollEndCapped(scroller, e.deltaY, 170);
       ScrollSecondary(e.deltaY, scroller, bg);
     };
-
 
     const handleArrowKeys = (event) => {
       if (event.keyCode === 39 || event.keyCode === 40) {
@@ -176,30 +226,6 @@ export default function useHorizontalScroller(
       document.removeEventListener("keydown", handleKeyDown);
       scrollPath.removeEventListener("mousedown", handleClick);
     };
-
-    function updateCompletion() {
-      let scrollProgress = Math.min(
-        Math.ceil(
-          (scroller.scrollLeft /
-            (scroller.scrollWidth - scroller.clientWidth)) *
-            100
-        ),
-        100
-      );
-      setCompletion(scrollProgress);
-      return scrollProgress;
-    }
-
-    function resetCompletion() {
-      scroller.scrollTo({
-        left: 0,
-        behavior: "smooth",
-      });
-      bg.scrollTo({
-        left: 0,
-        behavior: "smooth",
-      });
-    }
   }, []);
 
   useEffect(() => {

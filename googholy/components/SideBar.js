@@ -20,7 +20,7 @@ const Container = styled.div`
     position: fixed;
     z-index: 5;
     background-color: rgba(255, 255, 255, 0.45);
-    border-left: solid rgba(0, 0, 0, 0.5) 5px;
+    /* border-left: solid rgba(0, 0, 0, 0.5) 5px; */
     height: 100vh;
     width: 60px;
     left: 0;

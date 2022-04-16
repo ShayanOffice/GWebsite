@@ -6,11 +6,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #eee;
+  background-color: #eee;shape-rendering: optimizeSpeed;
 }
 ::-webkit-scrollbar {
   display: none;
 }
+
 
 ::selection {
   background:rgba(155, 0, 155, .1);
@@ -55,4 +56,5 @@ a {
 
 * {
   box-sizing: border-box;
+  shape-rendering: optimizeSpeed;
 }

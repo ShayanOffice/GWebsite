@@ -4,16 +4,17 @@ import Image from "next/image";
 import styled from "styled-components";
 
 import useHorizontalScroller from "../../../hooks/useHorizontalScroller";
-import Particles from "../../../components/Particles";
-import BGCurves from "../../../components/BGCurves";
-import BlobOverlay from "../../../components/BlobOverlay";
-import Dots from "../../../components/Dots";
-import ProgressBar from "../../../components/ProgressBar";
-import SideBar from "../../../components/SideBar";
+import Particles from "../../../googholy/components/Particles";
+import BGCurves from "../../../googholy/components/BGCurves";
+import BlobOverlay from "../../../googholy/components/BlobOverlay";
+import Dots from "../../../googholy/components/Dots";
+import ProgressBar from "../../../googholy/components/ProgressBar";
+import SideBar from "../../../googholy/components/SideBar";
 import useHandleFullscreen from "../../../hooks/useHandleFullscreen";
-import PoweredBy from "../../../components/PoweredBy";
-import FirstPage from "../../../components/Pages/FirstPage";
-import Intro from "../../../components/Pages/Intro";
+import PoweredBy from "../../../googholy/components/PoweredBy";
+import FirstPage from "../../../googholy/pages/FirstPage";
+import Intro from "../../../googholy/pages/Intro";
+import Details from "../../../googholy/pages/Details";
 
 const Container = styled.div`
   width: 100vw;
@@ -28,7 +29,7 @@ const Container = styled.div`
   .main {
     touch-action: pan-y;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     overflow-y: hidden;
     width: 100%;
     height: 100%;
@@ -41,11 +42,18 @@ const Container = styled.div`
       flex: none;
       width: 100vw;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
       .topLogo {
-        position: absolute;
-        top: 0;
-        width: 10vw;
-        min-width: 200px;
+        /* position: absolute;
+        top: 0; */
+        width: 30%;
+        /* min-width: 50px; */
+        max-width: 220px;
       }
       @media (max-width: 768px) {
         height: 95vh;
@@ -144,7 +152,6 @@ export default function Home() {
 
       <div className="main" ref={scrollerRef}>
         <section>
-          {/* <img className="topLogo" src="/svg/TopLogo.svg" /> */}
           <FirstPage />
         </section>
         <section>
@@ -153,7 +160,7 @@ export default function Home() {
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>Page Three</h1>
+          <Details />
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
