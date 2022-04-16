@@ -13,6 +13,7 @@ import SideBar from "../../../components/SideBar";
 import useHandleFullscreen from "../../../hooks/useHandleFullscreen";
 import PoweredBy from "../../../components/PoweredBy";
 import FirstPage from "../../../components/Pages/FirstPage";
+import Intro from "../../../components/Pages/Intro";
 
 const Container = styled.div`
   width: 100vw;
@@ -20,6 +21,7 @@ const Container = styled.div`
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
+
   @media (max-width: 768px) {
     height: 100vh;
   }
@@ -146,19 +148,19 @@ export default function Home() {
           <FirstPage />
         </section>
         <section>
-        <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>Page Two</h1>
+          <img className="topLogo" src="/svg/TopLogo.svg" />
+          <Intro />
         </section>
         <section>
-        <img className="topLogo" src="/svg/TopLogo.svg" />
+          <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Three</h1>
         </section>
         <section>
-        <img className="topLogo" src="/svg/TopLogo.svg" />
+          <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Four</h1>
         </section>
         <section>
-        <img className="topLogo" src="/svg/TopLogo.svg" />
+          <img className="topLogo" src="/svg/TopLogo.svg" />
           <h1>Page Five</h1>
         </section>
       </div>

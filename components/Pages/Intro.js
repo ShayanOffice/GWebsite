@@ -13,15 +13,15 @@ const Container = styled.div`
   position: relative;
   text-align: center;
   .bg {
-    border-radius: 15%;
+    border-radius: 20%;
     z-index: -50;
     filter: blur(35px);
     width: 80%;
-    height: 50%;
+    height: 30%;
     min-height: 10rem;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -90%);
+    transform: translate(-50%, -50%);
   }
 
   .leftPart {
@@ -54,7 +54,7 @@ const Container = styled.div`
   }
 
   .Minting {
-    margin-left: 25px;
+    margin-left: 15px;
     width: 100%;
     height: 30%;
     font-size: 4.5rem;
@@ -88,7 +88,7 @@ const Container = styled.div`
       }
     }
   }
-  @media (max-width: 980px) {
+  @media (max-width: 930px) {
     .Minting {
       font-size: 3rem;
       line-height: 2.8rem;
@@ -97,10 +97,7 @@ const Container = styled.div`
       }
     }
   }
-  @media (max-width: 780px) {
-    .bg {
-      top: 65%;
-    }
+  @media (max-width: 768px) {
     .Minting {
       font-size: 2.2rem;
       line-height: 2.2rem;
@@ -181,14 +178,14 @@ const Container = styled.div`
 
   @media (max-aspect-ratio: 32/40) {
     .Minting {
-      margin-bottom: 20%;
+      margin-bottom: 30%;
     }
     padding: 0.5rem 2.9rem;
     flex-direction: column;
     justify-content: center;
     height: 95%;
     .Logo {
-      width: 95%;
+      width: 100%;
       height: 100%;
     }
     .Images {
@@ -200,7 +197,7 @@ const Container = styled.div`
       }
       img {
         width: 70%;
-        top: 30%;
+        top: 35%;
         left: 46%;
 
         &:nth-of-type(1) {
@@ -256,7 +253,7 @@ const Container = styled.div`
         }
       }
     }
-    @media (max-width: 282px) {
+    @media (max-width: 210px) {
       .Minting {
         font-size: 1.5rem;
         line-height: 1.8rem;
@@ -268,20 +265,14 @@ const Container = styled.div`
   }
 `;
 
-export default function FirstPage() {
+export default function Intro() {
   return (
     <Container>
       <div className="side leftPart flex flex-col w-full h-full text-center justify-center align-middle">
         <img className="Logo" src="/svg/Logo.svg" />
         <div className="Minting relative">
           <span>
-            <div className="bg h-full bg-white absolute">
-              Minting in
-              <br /> 98<span className="unit">days</span>&nbsp; 16
-              <span className="unit">hours</span>&nbsp; 54
-              <span className="unit">minutes</span>&nbsp; 33
-              <span className="unit">seconds</span>&nbsp;
-            </div>
+            <div className="bg h-full bg-white absolute" />
             Minting in
             <br /> 98<span className="unit">days</span>&nbsp; 16
             <span className="unit">hours</span>&nbsp; 54
