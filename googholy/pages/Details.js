@@ -9,13 +9,13 @@ const Container = styled.div`
   margin-top: -10px;
   margin-bottom: 65px;
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
   font-family: "Amatic SC", cursive;
+  
   .prices {
     /* background-color: #ccc; */
     height: 95%;
@@ -41,8 +41,10 @@ const Container = styled.div`
       justify-content: space-around;
       border-radius: 6px;
       border: 2px solid rgba(255, 255, 255, 0.5);
+
       box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
         rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
       font-size: 2rem;
       font-weight: bold;
       .evolutionPrice {
@@ -173,7 +175,6 @@ const Container = styled.div`
     .textContent {
       font-size: 1.2rem;
       line-height: 1.4rem;
-      
     }
   }
   @media (max-width: 500px) {
@@ -193,7 +194,6 @@ const Container = styled.div`
     .textContent {
       font-size: 1rem;
       line-height: 1.2rem;
-
     }
   }
 
@@ -285,7 +285,7 @@ export default function Details() {
           <span className="evolutionPrice flex flex-col justify-center align-middle">
             <span>0.05 weth</span>
             {/* <span>Evolution Cost</span> */}
-            <img src="/svg/EvArrow.svg" alt="evolution price arrow" ></img>
+            <img src="/svg/EvArrow.svg" alt="evolution price arrow"></img>
           </span>
         </div>
         <div className="priceColumn">
@@ -318,12 +318,11 @@ export default function Details() {
       </div>
       <div className="textContent">
         <p className="font-bold">
-          HOW IT WORKS ?
-          <br /> One BIG feature that makes Googholy NFT project shine, is that
-          it’s gonna have phased minting for each drop.
-          <br /> Meaning:
+          HOW DOES IT WORK?
           <br />
-          at some date we drop some Googholy eggs (There’s only 3200 of them)
+          One BIG feature that makes Googholy NFT project shine, is that it’s
+          gonna have phased minting for each drop. <br /> Meaning: <br /> at
+          some date, we drop some Googholy eggs (There are only 3200 of them){" "}
           <br />
           also
         </p>

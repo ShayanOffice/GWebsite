@@ -10,13 +10,13 @@ const Container = styled.div`
   padding: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0vh;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow:hidden ;
+  overflow: hidden;
   * {
     z-index: 51;
   }
@@ -26,6 +26,7 @@ const Anim = () => {
   const options = {
     loop: true,
     autoplay: true,
+    // initialSegment: [30, 150],
     animationData: blob_animation,
     // rendererSettings: {
     //   preserveAspectRatio: "none",
@@ -35,8 +36,8 @@ const Anim = () => {
     zIndex: 6,
     pointerEvents: "none",
     // width: "70vw",
-    width: "55%",
-    minWidth:"550px",
+    width: "70%",
+    minWidth: "480px",
     // heigth: "100%",
     flex: "none",
     // scrollSnapAlign: 'Start',

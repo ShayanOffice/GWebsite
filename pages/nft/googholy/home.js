@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
+import { FpsView, useFps } from "react-fps";
 
 import useHorizontalScroller from "../../../hooks/useHorizontalScroller";
 import Particles from "../../../googholy/components/Particles";
@@ -15,6 +16,7 @@ import PoweredBy from "../../../googholy/components/PoweredBy";
 import FirstPage from "../../../googholy/pages/FirstPage";
 import Intro from "../../../googholy/pages/Intro";
 import Details from "../../../googholy/pages/Details";
+import RoadMap from "../../../googholy/pages/RoadMap";
 
 const Container = styled.div`
   width: 100vw;
@@ -22,7 +24,7 @@ const Container = styled.div`
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
-
+  overflow-y: hidden;
   @media (max-width: 768px) {
     height: 100vh;
   }
@@ -85,12 +87,27 @@ const Container = styled.div`
     }
   }
 `;
+const Borders = styled.div`
+  pointer-events: none;
+  border: 60px solid rgba(0, 0, 0, 1) ;
+  border-bottom: none;
+  border-radius: 80px;
+  filter: blur(7px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100vw + 90px);
+  height: calc(100vh + 90px);
+  position: absolute;
+  z-index: 100005;
+`;
 
 export default function Home() {
   const scrollerRef = useRef();
   const progressBarRef = useRef();
   const scrollPathRef = useRef();
   const bgRef = useRef();
+  const { fps, avgFps, maxFps, currentFps } = useFps(620);
   const [pageCount, setPageCount] = useState({ count: 1, active: 0 });
   const [selectedDot, setSelectedDot] = useState(0);
   const [sensedClick, setSensedClick] = useState(0);
@@ -118,6 +135,7 @@ export default function Home() {
     // console.log(pageCount);
     return () => {};
   }, [scrollerRef]);
+
   return (
     <Container>
       <Head>
@@ -144,12 +162,13 @@ export default function Home() {
         setSelectedDot={setSelectedDot}
         setSensedClick={setSensedClick}
       />
-      <ProgressBar refs={{ progressBarRef, scrollPathRef }} />
-      <BlobOverlay />
+      {/* <ProgressBar refs={{ progressBarRef, scrollPathRef }} /> */}
+      <BlobOverlay avgFps={currentFps} maxFps={maxFps} />
       <Particles />
       <BGCurves ref={bgRef} />
       <PoweredBy />
-
+      {/* <FpsView width={240} height={180} left={60} top={80} /> */}
+      <Borders />
       <div className="main" ref={scrollerRef}>
         <section>
           <FirstPage />
@@ -164,7 +183,7 @@ export default function Home() {
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>Page Four</h1>
+          <RoadMap />
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />

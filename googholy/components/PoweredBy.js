@@ -4,7 +4,7 @@ const Container = styled.div`
   pointer-events: none;
   z-index: 10000;
   width: 100%;
-  height: 99vh;
+  height: 98.5vh;
   margin: 0;
   overflow: hidden;
   position: absolute;

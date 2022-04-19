@@ -14,8 +14,8 @@ export default function useHorizontalScroller(
   let scrollLeft = 0;
 
   let scroller = scrollerRef.current;
-  let progressBar = progressBarRef.current;
-  let scrollPath = scrollPathRef.current;
+  let progressBar = progressBarRef?.current;
+  let scrollPath = scrollPathRef?.current;
   let bg = bgRef.current;
 
   function updateCompletion() {
@@ -105,7 +105,7 @@ export default function useHorizontalScroller(
             left: targetPx,
             behavior: "smooth",
           });
-          
+
           updateCompletion();
           // resetCompletion();
           clearInterval(intervalId);
@@ -212,7 +212,7 @@ export default function useHorizontalScroller(
     });
     scroller.addEventListener("touchmove", handleTouchMove, { passive: false });
     document.addEventListener("keydown", handleKeyDown);
-    scrollPath.addEventListener("mousedown", handleClick);
+    scrollPath && scrollPath.addEventListener("mousedown", handleClick);
     return () => {
       scroller.removeEventListener("wheel", handleWheel);
       scroller.removeEventListener("scroll", updateScrollProgress);
@@ -224,7 +224,7 @@ export default function useHorizontalScroller(
         passive: false,
       });
       document.removeEventListener("keydown", handleKeyDown);
-      scrollPath.removeEventListener("mousedown", handleClick);
+      scrollPath && scrollPath.removeEventListener("mousedown", handleClick);
     };
   }, []);
 

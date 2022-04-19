@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import BGCurves from "../../googholy/components/BGCurves";
 import BlobOverlay from "../../googholy/components/BlobOverlay";
 import AnimatedBlob from "../../googholy/components/AnimatedBlob";
 import useHandleFullscreen from "../../hooks/useHandleFullscreen";
@@ -21,7 +20,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   .content {
-    /* pointer-events: none; */
+    position: absolute;
     cursor: pointer;
     z-index: 51;
     display: flex;
@@ -37,7 +36,7 @@ const Container = styled.div`
     h2 {
       z-index: 51;
       /* font-family: "Indie Flower", cursive; */
-      font-family: 'Gloria Hallelujah', cursive;
+      font-family: "Gloria Hallelujah", cursive;
       font-size: 5rem;
       font-weight: bold;
       line-height: 1rem;
@@ -52,6 +51,8 @@ const Container = styled.div`
       font-size: 2rem;
     }
 
+    margin: 0;
+    color: #323;
     @media (max-width: 1540px) {
       h1 {
         font-size: 6.5rem;
@@ -66,7 +67,6 @@ const Container = styled.div`
       }
     }
 
-
     @media (max-width: 1200px) {
       h1 {
         font-size: 5rem;
@@ -80,12 +80,22 @@ const Container = styled.div`
         font-size: 1.3rem;
       }
     }
-    margin: 0;
-
-    color: #323;
-  }
-  @media (max-width: 768px) {
-    height: 85vh;
+    @media (max-width: 768px) {
+      /* height: vh; */
+    }
+    @media (max-width: 460px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      h3,
+      p {
+        font-size: 1.3rem;
+      }
+    }
   }
 `;
 

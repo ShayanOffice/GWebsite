@@ -8,7 +8,10 @@ const Container = styled.div`
   z-index: 20;
   position: absolute;
   overflow-y: hidden;
-  border: 3px solid rgba(0, 0, 0, 0.7);
+
+  /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
+    saturate(0.88); */
+  filter: blur(10px);
   /* border-right: 11px solid rgba(0, 0, 0, 0.5); */
   /* border-top: 5px solid rgba(0, 0, 0, 0.7); */
   .white {

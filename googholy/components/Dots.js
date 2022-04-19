@@ -30,7 +30,7 @@ const Container = styled.div`
     font-size: 110px;
     height: 50px;
     overflow: hidden;
-    width: 22px;
+    width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,7 +87,6 @@ export default function Dots({ pageCount, setSelectedDot, setSensedClick }) {
   return (
     <Container>
       {dots()}
-      {/* .....sargasrfgersgt */}
     </Container>
   );
 }

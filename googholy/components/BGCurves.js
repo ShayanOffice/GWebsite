@@ -12,13 +12,16 @@ const Container = styled.div`
   height: 100vh;
   position: absolute;
   /* bottom: -5vh; */
-  
+
   z-index: 1;
   display: flex;
   align-items: flex-end;
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   overflow-y: hidden;
+/* 
+  filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
+    saturate(0.88); */
 `;
 
 const Anim = () => {
@@ -36,6 +39,7 @@ const Anim = () => {
     // width: "70vw",
     height: "65%",
     flex: "none",
+    // filter:""
     // scrollSnapAlign: 'Start',
   });
   return View;

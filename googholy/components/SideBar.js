@@ -6,9 +6,9 @@ const Container = styled.div`
     position: fixed;
     height: 100vh;
     @media (max-width: 768px) {
-      height: 94vh;
+      height: 96vh;
     }
-    z-index: 200;
+    z-index: 100001;
     left: 0;
     display: flex;
     flex-direction: column;
@@ -18,14 +18,15 @@ const Container = styled.div`
     pointer-events: none;
 
     position: fixed;
-    z-index: 5;
-    background-color: rgba(255, 255, 255, 0.45);
+    z-index: 100000;
+    background-color: rgba(255, 255, 255, 0.3);
     /* border-left: solid rgba(0, 0, 0, 0.5) 5px; */
     height: 100vh;
-    width: 60px;
+    width: 59px;
     left: 0;
     top: 0;
     transition: all 0.7s;
+    backdrop-filter:  blur(15px) ;
   }
 
   img {
@@ -38,7 +39,7 @@ const Container = styled.div`
       position: fixed;
     } */
     &:last-of-type {
-      margin-bottom: 27px;
+      margin-bottom: 55px;
     }
   }
 `;
