@@ -17,6 +17,7 @@ import FirstPage from "../../../googholy/pages/FirstPage";
 import Intro from "../../../googholy/pages/Intro";
 import Details from "../../../googholy/pages/Details";
 import RoadMap from "../../../googholy/pages/RoadMap";
+import FuturePossibilities from "../../../googholy/pages/FuturePossibilities";
 
 const Container = styled.div`
   width: 100vw;
@@ -57,7 +58,7 @@ const Container = styled.div`
         /* min-width: 50px; */
         max-width: 220px;
       }
-      @media (max-width: 768px) {
+      @media (max-aspect-ratio: 32/40) {
         height: 95vh;
       }
       scroll-snap-align: start;
@@ -89,7 +90,7 @@ const Container = styled.div`
 `;
 const Borders = styled.div`
   pointer-events: none;
-  border: 60px solid rgba(0, 0, 0, 1) ;
+  border: 60px solid rgba(0, 0, 0, 1);
   border-bottom: none;
   border-radius: 80px;
   filter: blur(7px);
@@ -162,7 +163,7 @@ export default function Home() {
         setSelectedDot={setSelectedDot}
         setSensedClick={setSensedClick}
       />
-      {/* <ProgressBar refs={{ progressBarRef, scrollPathRef }} /> */}
+      <ProgressBar refs={{ progressBarRef, scrollPathRef }} />
       <BlobOverlay avgFps={currentFps} maxFps={maxFps} />
       <Particles />
       <BGCurves ref={bgRef} />
@@ -187,7 +188,15 @@ export default function Home() {
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>Page Five</h1>
+          <FuturePossibilities />
+        </section>
+        <section>
+          <img className="topLogo" src="/svg/TopLogo.svg" />
+          <h1>Who is BoomHUNK?</h1>
+        </section>
+        <section>
+          <img className="topLogo" src="/svg/TopLogo.svg" />
+          <h1>FAQ</h1>
         </section>
       </div>
     </Container>

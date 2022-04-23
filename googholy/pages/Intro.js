@@ -5,8 +5,7 @@ import TimedSlideShow from "../components/TimedSlideShow";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 3.5rem;
-  padding-right: 2.5rem;
+  padding: 0 5rem;
   margin-top: -10px;
   margin-bottom: 65px;
   display: flex;
@@ -25,7 +24,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-    @media (max-aspect-ratio: 40/40) {
+    @media (max-aspect-ratio: 36/40) {
       flex-direction: column;
       justify-content: center;
     }

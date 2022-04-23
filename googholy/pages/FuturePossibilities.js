@@ -6,7 +6,7 @@ import AnimatedBlob from "../../googholy/components/AnimatedBlob";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 2rem 4rem;
+  padding: 2rem 5rem;
   margin-top: -60px;
   /* margin-bottom: 65px; */
   display: flex;
@@ -136,43 +136,26 @@ const Container = styled.div`
   } */
 `;
 
-export default function RoadMap() {
+export default function FuturePossibilities() {
   return (
     <Container>
       <div className="content w-full h-full  flex flex-col justify-center text-center items-center">
-        <span className="mainTitle">RoadMap</span>
-        {/* <div className="bg w-full h-full bg-white flex justify-center" /> */}
-        <div className="w-full h-full flex justify-center text-center items-center">
-          <div className="w-full h-full flex flex-col justify-center line-through text-center items-center">
-            <span> making First three evolution stages of art</span>
-            <span> Making rarity work.</span>
-            <span> Website 1.0 design and deployment.</span>
+        <span className="mainTitle">Possible Future</span>
+        <div className="content w-full h-full  flex justify-center text-center items-center">
+          <div className="content w-full h-full flex flex-col justify-center text-center items-start">
+            <span>Rarity Checker</span>
+            <span>DAO</span>
+            <span>Staking</span>
+            <span>BOOMHUNK Metaverse Music Festivals</span>
+            <span>GameFi</span>
           </div>
-          <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>NFT content and Evolution.</span>
-            <span>
-              functionality Social channels & Discord server creation.
-            </span>
-            <span>Main teaser music and video creation.</span>
+          <div className="content w-full h-full flex flex-col justify-center text-center items-start">
+            <span>Rarity Checker</span>
+            <span>DAO</span>
+            <span>Staking</span>
+            <span>BOOMHUNK Metaverse Music Festivals</span>
+            <span>GameFi</span>
           </div>
-        </div>
-
-        <div className="w-full h-full flex justify-center text-center items-center">
-          <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>Eggs whitelisting</span>
-            <span>Eggs mint date</span>
-          </div>
-          <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>Baby GooGholies whitelisting </span>
-            <span>Baby GooGholies Mint date</span>
-          </div>
-          <div className="w-full h-full flex  flex-col justify-center text-center items-center">
-            <span>GooGholies whitelisting</span>
-            <span>GooGholies Mint date</span>
-          </div>
-        </div>
-        <div className="w-full h-full flex flex-col justify-center text-center items-center">
-          <span>Final Evolution Stage Design and Mint</span>
         </div>
       </div>
     </Container>

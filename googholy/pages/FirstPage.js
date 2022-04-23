@@ -5,7 +5,7 @@ import { useEffect, useState } from "react/cjs/react.development";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding-left: 2rem;
+  padding-left: 4rem;
   padding-right: 2rem;
   display: flex;
   justify-content: center;

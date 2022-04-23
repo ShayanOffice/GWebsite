@@ -36,7 +36,7 @@ const Anim = () => {
     zIndex: 6,
     pointerEvents: "none",
     // width: "70vw",
-    width: "70%",
+    width: "65%",
     minWidth: "480px",
     // heigth: "100%",
     flex: "none",

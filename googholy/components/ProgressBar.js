@@ -11,7 +11,7 @@ const Container = styled.div`
     min-height: 15px;
     max-height: 50px;
     background-color: rgba(170, 170, 190, 1);
-    z-index: 100010;
+    z-index: 10;
     /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
     saturate(0.88);
     display: none; */
@@ -32,7 +32,7 @@ const Container = styled.div`
     pointer-events: none;
     transition: width 0.7s;
     animation: animate 5s ease-in-out infinite;
-    z-index: 100011;
+    z-index: 11;
     /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
     saturate(0.88); */
     @media (max-width: 768px) {
