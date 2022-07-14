@@ -1,0 +1,6 @@
+Learn about deployment and running tests on local Hardhat blockchain.
+Make simple nft contract work on localTestnet.
+Emulate multi-stage nft contracts.
+    Make another nft contract as a higher evolution stage
+    Make a controller smart contract
+Try to depoly and see if it's okay to do it on ethereum.

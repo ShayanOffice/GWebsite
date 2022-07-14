@@ -1,0 +1,17 @@
+Install Next.js
+Create smartcontracts subfolder and Install --save-dev hardhat with simple template + require @nomiclabs/hardhat-etherscan in it for verification on etherscan/ polygonscan.
+
+make your contract.sol file inside of contracts folder
+write your deployDAO.js inside of scripts folder
+
+npm install --save-dev @nomiclabs/hardhat-etherscan‌ => and import @nomiclabs/hardhat-etherscan inside hardhat.config.js
+create .env file and store your polygonscan api-key, wallet private key, moralis speedy-node url in it.
+export your .env variables from hardhat.config.js
+
+Deployment in terminal:
+    npx hardhat clean                                      |
+    npx hardhat compile                                    |  => Compiled 1 Solidity file successfully
+    npx hardhat run scripts/deployDAO.js --network mumbai  |  => DAO deployed to: 0xBd2D346c47DAeC0ED28Bd3B5164043eff49e97B7
+Then Verify The Contract:
+    npx hardhat verify 0xBd2D346c47DAeC0ED28Bd3B5164043eff49e97B7 --network mumbai
+
