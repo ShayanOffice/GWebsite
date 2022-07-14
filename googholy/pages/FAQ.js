@@ -159,14 +159,24 @@ const Container = styled.div`
   } */
 `;
 
-export default function WhoIsBOOMHUNK() {
+export default function FAQ() {
   return (
     <Container>
       <div className="content w-full h-full  flex flex-col text-center items-center">
-        <span className="mainTitle">
-          If you like the art, then it’s worth knowing
-        </span>
-        <span className="mainTitle">BOOMHUNK</span>
+        <div className="content w-full h-full flex flex-col justify-center text-center items-center">
+          <h3>Utilities</h3>
+          <span>GooGholy is our debut NFT project with special utilities.</span>
+          <span>
+            Owners will get a chance to gain access to future projects’
+            whitelisting spots.
+          </span>
+          <span>You own the copyright of your GooGholy NFT’s artwork</span>
+          <span>
+            Giveaways and whitelisting ( Fair & Verifiable raffles using
+            Chainlink VRF )
+          </span>
+        </div>
+        <span className="mainTitle">FAQ</span>
         <div className="content w-full h-full flex flex-col justify-center text-center items-center">
           <span>
             BOOMHUNK is a game designer, developer, CG artist, and also music
@@ -182,7 +192,6 @@ export default function WhoIsBOOMHUNK() {
             GooGholies who can grow and evolve over the project’s progress!
           </span>
         </div>
-
       </div>
     </Container>
   );

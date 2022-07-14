@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Lottie from "lottie-react";
 import { useLottie } from "lottie-react";
 import blob_animation from "../../animations/animated_blob.json";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Container = styled.div`
   margin: 0;
@@ -35,21 +34,13 @@ const Anim = () => {
     // },
   };
   const { View } = useLottie(options, {
-    zIndex: 6,
     pointerEvents: "none",
-    // width: "70vw",
-    width: "65%",
-    minWidth: "480px",
-    // heigth: "100%",
-    flex: "none",
-
-    // scrollSnapAlign: 'Start',
+    width: "10%",
   });
   return View;
 };
 
-const AnimatedBlob = React.forwardRef((props, ref) => {
-  const { height, width } = useWindowDimensions();
+const AnimatedBlobScalable = React.forwardRef((props, ref) => {
 
   return (
     <Container ref={ref}>
@@ -57,4 +48,4 @@ const AnimatedBlob = React.forwardRef((props, ref) => {
     </Container>
   );
 });
-export default AnimatedBlob;
+export default AnimatedBlobScalable;

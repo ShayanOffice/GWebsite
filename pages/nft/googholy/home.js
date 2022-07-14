@@ -18,6 +18,8 @@ import Intro from "../../../googholy/pages/Intro";
 import Details from "../../../googholy/pages/Details";
 import RoadMap from "../../../googholy/pages/RoadMap";
 import FuturePossibilities from "../../../googholy/pages/FuturePossibilities";
+import WhoIsBOOMHUNK from "../../../googholy/pages/WhoIsBOOMHUNK";
+import FAQ from "../../../googholy/pages/FAQ";
 
 const Container = styled.div`
   width: 100vw;
@@ -192,11 +194,11 @@ export default function Home() {
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>Who is BoomHUNK?</h1>
+          <WhoIsBOOMHUNK />
         </section>
         <section>
           <img className="topLogo" src="/svg/TopLogo.svg" />
-          <h1>FAQ</h1>
+          <FAQ />
         </section>
       </div>
     </Container>

@@ -21,6 +21,18 @@ const Container = styled.div`
   div {
     margin: 5px 10px;
   }
+  span {
+    margin-top: 10px;
+  }
+  .point {
+    width: 1.5rem;
+    margin-right: 1rem;
+    filter: hue-rotate(-125deg) brightness(1.32)
+      drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.8));
+    @media (max-width: 380px) {
+      width: 10px;
+    }
+  }
   .mainTitle {
     margin-top: 30px;
     margin-bottom: -30px;
@@ -144,35 +156,72 @@ export default function RoadMap() {
         {/* <div className="bg w-full h-full bg-white flex justify-center" /> */}
         <div className="w-full h-full flex justify-center text-center items-center">
           <div className="w-full h-full flex flex-col justify-center line-through text-center items-center">
-            <span> making First three evolution stages of art</span>
-            <span> Making rarity work.</span>
-            <span> Website 1.0 design and deployment.</span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              making First three evolution stages of art
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Making rarity work.
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point" />
+              Website 1.0 design and deployment.
+            </span>
           </div>
           <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>NFT content and Evolution.</span>
-            <span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              NFT content and Evolution.
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
               functionality Social channels & Discord server creation.
             </span>
-            <span>Main teaser music and video creation.</span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Main teaser music and video creation.
+            </span>
           </div>
         </div>
 
         <div className="w-full h-full flex justify-center text-center items-center">
           <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>Eggs whitelisting</span>
-            <span>Eggs mint date</span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Eggs whitelisting
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Eggs mint date
+            </span>
           </div>
           <div className="w-full h-full flex flex-col justify-center text-center items-center">
-            <span>Baby GooGholies whitelisting </span>
-            <span>Baby GooGholies Mint date</span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Baby GooGholies whitelisting{" "}
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              Baby GooGholies Mint date
+            </span>
           </div>
           <div className="w-full h-full flex  flex-col justify-center text-center items-center">
-            <span>GooGholies whitelisting</span>
-            <span>GooGholies Mint date</span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              GooGholies whitelisting
+            </span>
+            <span className="flex justify-center items-center">
+              <img src="/img/point.png" className="point " />
+              GooGholies Mint date
+            </span>
           </div>
         </div>
         <div className="w-full h-full flex flex-col justify-center text-center items-center">
-          <span>Final Evolution Stage Design and Mint</span>
+          <span className="flex justify-center items-center">
+            <img src="/img/point.png" className="point " />
+            Final Evolution Stage Design and Mint
+          </span>
         </div>
       </div>
     </Container>

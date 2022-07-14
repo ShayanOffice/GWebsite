@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import AnimatedBlob from "../../googholy/components/AnimatedBlob";
+import AnimatedBlobScalable from "../components/AnimatedBlobScalable";
 
 const Container = styled.div`
   width: 100%;
@@ -20,6 +21,19 @@ const Container = styled.div`
   font-family: "Amatic SC", cursive;
   div {
     margin: 5px 10px;
+    position: relative;
+    span {
+      margin-top: 10px;
+      position: relative;
+    }
+  }
+  .point {
+    width: 1.5rem;
+    margin-right: 1rem;
+    filter: hue-rotate(-125deg) brightness(1.32) drop-shadow(0px 3px 3px rgba(0,0,0,.8));
+    @media (max-width: 380px) {
+      width: 10px;
+    }
   }
   .mainTitle {
     margin-top: 30px;
@@ -143,18 +157,64 @@ export default function FuturePossibilities() {
         <span className="mainTitle">Possible Future</span>
         <div className="content w-full h-full  flex justify-center text-center items-center">
           <div className="content w-full h-full flex flex-col justify-center text-center items-start">
-            <span>Rarity Checker</span>
-            <span>DAO</span>
-            <span>Staking</span>
-            <span>BOOMHUNK Metaverse Music Festivals</span>
-            <span>GameFi</span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              RoadMap 2.0
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              DAO
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              Staking
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              BOOMHUNK Metaverse Music Festivals
+            </span>
           </div>
           <div className="content w-full h-full flex flex-col justify-center text-center items-start">
-            <span>Rarity Checker</span>
-            <span>DAO</span>
-            <span>Staking</span>
-            <span>BOOMHUNK Metaverse Music Festivals</span>
-            <span>GameFi</span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              Rarity Checker
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              Design and add Next Generation GooGholies
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              GameFi whitepapers
+            </span>
+            <span className="flex justify-center items-center">
+              <img
+                src="/img/point.png"
+                className="point"
+              />
+              Rest of My NFT project Ideas
+            </span>
           </div>
         </div>
       </div>
