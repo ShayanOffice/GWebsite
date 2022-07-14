@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+
 const Container = styled.div`
   .icons {
     position: fixed;
@@ -62,12 +63,22 @@ const Container = styled.div`
   }
 `;
 
-export default function SideBar() {
+export default function SideBar({ setIsWalletMenuOpen }) {
+  // const blocklyRef = useRef(null);
   return (
     <Container>
       <div className="bg" />
       <div className="icons">
-        <img src="/svg/wallet.svg" alt="wallet icon" />
+        <div>
+          <img
+            src="/svg/wallet.svg"
+            alt="wallet icon"
+            onClick={() => setIsWalletMenuOpen(true)}
+          />
+          <div className="">
+            {/* <div ref={blocklyRef} /> // Blockly will be injected here */}
+          </div>
+        </div>
         <div>
           <img src="/svg/instagram.svg" alt="instagram icon" />
           <img src="/svg/discord.svg" alt="discord icon" />

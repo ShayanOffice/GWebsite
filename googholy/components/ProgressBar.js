@@ -7,10 +7,10 @@ const Container = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2%;
+    height: 1.2%;
     min-height: 15px;
     max-height: 50px;
-    background-color: rgba(170, 170, 190, 1);
+    background-color: rgba(200, 200, 220, 0.5);
     z-index: 10;
     /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
     saturate(0.88);
@@ -25,7 +25,7 @@ const Container = styled.div`
     bottom: 0;
     left: 0;
     width: 0%;
-    height: 2%;
+    height: 1.2%;
     min-height: 15px;
     max-height: 50px;
     background: linear-gradient(to right, #008aff, #00ffe7);

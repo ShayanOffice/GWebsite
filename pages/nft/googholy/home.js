@@ -20,6 +20,7 @@ import RoadMap from "../../../googholy/pages/RoadMap";
 import FuturePossibilities from "../../../googholy/pages/FuturePossibilities";
 import WhoIsBOOMHUNK from "../../../googholy/pages/WhoIsBOOMHUNK";
 import FAQ from "../../../googholy/pages/FAQ";
+import SlideMenu from "../../../googholy/components/SlideMenu";
 
 const Container = styled.div`
   width: 100vw;
@@ -114,6 +115,7 @@ export default function Home() {
   const [pageCount, setPageCount] = useState({ count: 1, active: 0 });
   const [selectedDot, setSelectedDot] = useState(0);
   const [sensedClick, setSensedClick] = useState(0);
+  const [isWalletMenuOpen, setIsWalletMenuOpen] = useState(false);
   const HandleFullscreen = useHandleFullscreen();
   const horizontalScroller = useHorizontalScroller(
     scrollerRef,
@@ -159,7 +161,8 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <SideBar />
+      <SlideMenu isOpen={isWalletMenuOpen} setIsOpen={setIsWalletMenuOpen} />
+      <SideBar setIsWalletMenuOpen={setIsWalletMenuOpen} />
       <Dots
         pageCount={pageCount}
         setSelectedDot={setSelectedDot}

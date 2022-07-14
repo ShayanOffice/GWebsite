@@ -11,7 +11,7 @@ const Container = styled.div`
 
   /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
     saturate(0.88); */
-  filter: blur(10px);
+  /* filter: blur(3px); */
   /* border-right: 11px solid rgba(0, 0, 0, 0.5); */
   /* border-top: 5px solid rgba(0, 0, 0, 0.7); */
   .white {
@@ -57,53 +57,53 @@ const Container = styled.div`
     align-self: flex-end;
     width: 1em;
     height: 1em;
-    border-radius: 33%;
+    border-radius: 16px;
     transform: translateY(100%);
     background: #b3ff00;
     &:nth-child(2) {
-      height: 4em;
-      width: 10em;
+      height: 2em;
+      width: 4rem;
       animation-delay: 1s;
       animation-duration: 17s;
     }
     &:nth-child(3) {
-      height: 6em;
-      width: 4em;
+      height: 3em;
+      width: 2em;
       animation-delay: 1.5s;
       animation-duration: 8s;
     }
     &:nth-child(4) {
-      height: 6em;
-      width: 10em;
+      height: 3em;
+      width: 4rem;
       animation-delay: 0.5s;
       animation-duration: 13s;
     }
     &:nth-child(5) {
-      height: 5em;
-      width: 6em;
+      height: 2.5em;
+      width: 3em;
       animation-delay: 4s;
       animation-duration: 11s;
     }
     &:nth-child(6) {
-      height: 8em;
-      width: 6em;
+      height: 4em;
+      width: 3em;
       animation-delay: 2s;
       animation-duration: 9s;
     }
     &:nth-child(7) {
-      height: 10em;
-      width: 6em;
+      height: 5em;
+      width: 3em;
       animation-duration: 12s;
     }
     &:nth-child(8) {
-      height: 8em;
-      width: 10em;
+      height: 1.5em;
+      width: 3em;
       animation-delay: 5s;
       animation-duration: 18s;
     }
     &:nth-child(9) {
-      height: 4em;
-      width: 6em;
+      height: 2em;
+      width: 3em;
       animation-duration: 9s;
     }
     &:nth-child(10) {
@@ -116,11 +116,11 @@ const Container = styled.div`
 
   @keyframes squares {
     from {
-      transform: translateY(100%) rotate(-60deg);
+      transform: translateY(100%) rotate(-90deg);
       background: #b3ff00;
     }
     to {
-      transform: translateY(calc(-100vh + -100%)) rotate(165deg);
+      transform: translateY(calc(-100vh + -100%)) rotate(180deg);
       background: #b3ff00;
     }
   }
@@ -136,9 +136,9 @@ export default function Particles() {
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
           {/* <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div> */}
         </div>
