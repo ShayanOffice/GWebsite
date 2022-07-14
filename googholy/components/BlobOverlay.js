@@ -21,8 +21,8 @@ const BlobOverlay = styled.div`
       ? `none`
       : `brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7) saturate(0.88)`}; */
 
-  backdrop-filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
-    saturate(0.88);
+  /* backdrop-filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
+    saturate(0.88); */
   /* backdrop-filter:  hue-rotate(-1deg) ; */
   /* backdrop-filter: blur(10px) hue-rotate(12deg) contrast(2); */
   pointer-events: none;

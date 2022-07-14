@@ -10,15 +10,15 @@ module.exports = {
   // defaultNetwork: "ropsten",
   networks: {
     hardhat: {},
-    rinkeby: {
-      url: RPC_NODE_URL,
-      accounts: [ACCOUNT_PRIVATE_KEY],
-    },
-    ethereum: {
-      chainId: 1,
-      url: RPC_NODE_URL,
-      accounts: [ACCOUNT_PRIVATE_KEY],
-    },
+    // rinkeby: {
+    //   url: RPC_NODE_URL,
+    //   accounts: [ACCOUNT_PRIVATE_KEY],
+    // },
+    // ethereum: {
+    //   chainId: 1,
+    //   url: RPC_NODE_URL,
+    //   accounts: [ACCOUNT_PRIVATE_KEY],
+    // },
   },
   etherscan: {
     apiKey: API_KEY,
