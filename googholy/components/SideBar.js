@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import styled from "styled-components";
-import LoginButton from "./LoginButton";
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import LoginButton from './LoginButton';
+import AnimatedButton from './AnimatedButton';
 
 const Container = styled.div`
   .icons {
@@ -68,20 +69,35 @@ export default function SideBar({ setIsWalletMenuOpen }) {
   // const blocklyRef = useRef(null);
   return (
     <Container>
-      <div className="bg" />
-      <div className="icons">
+      <div className='bg' />
+      <div className='icons'>
         <div>
           <img
-            src="/svg/wallet.svg"
-            alt="wallet icon"
+            src='/svg/wallet.svg'
+            alt='wallet icon'
             onClick={() => setIsWalletMenuOpen(true)}
           />
-         <LoginButton/>
+          {/* <LoginButton/> */}
+          <AnimatedButton
+            className='w-16 h-20'
+            // forward
+            src='/animated/12202-wallet.json'
+            sizeX='192px'
+            sizeY='192px'
+            speed={1}
+            segment={[19, 25]}
+            FrameEvents={{
+              15: (e, animated, element) =>
+                console.log('entered frame 15', e.direction),
+              20: (e, animated, element) =>
+                console.log('entered frame 20', e.direction),
+            }}
+          />
         </div>
         <div>
-          <img src="/svg/instagram.svg" alt="instagram icon" />
-          <img src="/svg/discord.svg" alt="discord icon" />
-          <img src="/svg/twitter.svg" alt="twitter icon" />
+          <img src='/svg/instagram.svg' alt='instagram icon' />
+          <img src='/svg/discord.svg' alt='discord icon' />
+          <img src='/svg/twitter.svg' alt='twitter icon' />
         </div>
       </div>
     </Container>

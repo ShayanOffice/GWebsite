@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import lottie from "lottie-web";
-// import icon from "../../animations/lottie/12202-wallet.json";
-import { useEffect, useRef, useState } from "react";
+import styled from 'styled-components';
+import lottie from 'lottie-web';
+// import lottie from "lottie-web/build/player/lottie_light";
+// import icon from '../../animations/lottie/12202-wallet.json';
+import { useEffect, useRef, useState } from 'react';
 
 const Container = styled.div``;
 
@@ -10,21 +11,21 @@ export default function LoginButton() {
   const ref = useRef();
   const [anim, setAnim] = useState();
   useEffect(() => {
-    if (!anim?.animationID || anim?.animationID != "") {
+    if (!anim?.animationID || anim?.animationID != '') {
       setAnim(
         lottie.loadAnimation({
           container: ref?.current, // the dom element that will contain the animation
-          renderer: "svg",
+          renderer: 'svg',
           loop: false,
           autoplay: false,
-          path: "/lottie/12202-wallet.json", // the path to the animation json
+          path: '/lottie/12202-wallet.json', // the path to the animation json
           rendererSettings: {
             progressiveLoad: true,
-            preserveAspectRatio: "xMidYMid meet",
+            preserveAspectRatio: 'xMidYMid meet',
           },
         })
       );
-    } else console.log("AnimID:", anim.animationID);
+    } else console.log('AnimID:', anim.animationID);
     return () => {
       anim && anim.destroy();
     };
@@ -32,21 +33,21 @@ export default function LoginButton() {
 
   return (
     <Container
-      className="w-16 h-12 p-0 m-0 -ml-3 overflow-hidden text-center rounded "
+      className='w-16 h-12 p-0 m-0 -ml-3 overflow-hidden text-center rounded '
       onMouseEnter={() => {
-        console.log("anim:", anim);
+        console.log('anim:', anim);
         anim && anim.setSegment(19, 35);
         anim && anim.setSpeed(2);
         anim && anim.setDirection(1);
         anim && anim.playSegments(anim.segments);
       }}
       onMouseLeave={() => {
-        console.log("anim:", anim);
+        console.log('anim:', anim);
         anim && anim.setDirection(-1);
         anim && anim.play();
       }}
     >
-      <div className="w-full h-full scale-[3.5]" ref={ref}></div>
+      <div className='w-full h-full scale-[3.5]' ref={ref}></div>
       {/* <div ref={blocklyRef} /> // Blockly will be injected here */}
       {/* <img
         src="/svg/Login.svg"
