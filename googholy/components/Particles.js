@@ -5,13 +5,13 @@ const Container = styled.div`
   /* background: red; */
   width: 100vw;
   height: 95vh;
-  z-index: 20;
+  z-index: 0;
   position: absolute;
   overflow-y: hidden;
 
   /* filter: brightness(70%) blur(10px) hue-rotate(-3deg) contrast(7)
     saturate(0.88); */
-  /* filter: blur(3px); */
+  filter: blur(3px);
   /* border-right: 11px solid rgba(0, 0, 0, 0.5); */
   /* border-top: 5px solid rgba(0, 0, 0, 0.7); */
   .white {
@@ -37,12 +37,12 @@ const Container = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      height: 95vh;
-      /* background-image: linear-gradient(
+      height: 80vh;
+      background-image: linear-gradient(
         0deg,
-        #000000 0%,
+        #df9 0%,
         rgba(235, 235, 235, 0) 100%
-      ); */
+      );
     }
   }
 

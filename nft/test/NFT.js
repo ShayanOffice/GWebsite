@@ -28,8 +28,9 @@ describe("NFT contract", function () {
   describe("Deployment", function () {
     it("Should set the notRevealedUri", async function () {
       const { nft, owner } = await loadFixture(deployNFTFixture);
-
-      expect(nft.notRevealedUri).to.equal(
+      // const notRevealedUri = await nft.notRevealedUri;
+      console.log("thaaaa url is: ", await nft.notRevealedUri());
+      expect(await nft.notRevealedUri()).to.equal(
         "ipfs://bafybeieph4uteygcipvr66h4ee4z3nhz36yfjjlm3wmg6dqkpmvu5gavxu/Egg.json"
       );
     });

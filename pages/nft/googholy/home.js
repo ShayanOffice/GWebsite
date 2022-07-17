@@ -169,7 +169,7 @@ export default function Home() {
         setSensedClick={setSensedClick}
       />
       <ProgressBar refs={{ progressBarRef, scrollPathRef }} />
-      <BlobOverlay avgFps={currentFps} maxFps={maxFps} />
+      {/* <BlobOverlay avgFps={currentFps} maxFps={maxFps} /> */}
       <Particles />
       <BGCurves ref={bgRef} />
       <PoweredBy />

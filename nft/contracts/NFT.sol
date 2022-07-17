@@ -34,10 +34,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     ) ERC721(_name, _sym) {
         setBaseURI(_initBaseURI);
         setNotRevealedURI(_initNotRevealedUri);
-        console.log(
-            "NotRevealed URI is: %o",
-            notRevealedUri
-        );
+        console.log("NotRevealed URI is: %o", notRevealedUri);
     }
 
     // internal

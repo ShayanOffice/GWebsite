@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
+import LoginButton from "./LoginButton";
 
 const Container = styled.div`
   .icons {
@@ -7,7 +8,7 @@ const Container = styled.div`
     height: 100vh;
     z-index: 100001;
     top: 0;
-    left: 24px;
+    left: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -75,9 +76,7 @@ export default function SideBar({ setIsWalletMenuOpen }) {
             alt="wallet icon"
             onClick={() => setIsWalletMenuOpen(true)}
           />
-          <div className="">
-            {/* <div ref={blocklyRef} /> // Blockly will be injected here */}
-          </div>
+         <LoginButton/>
         </div>
         <div>
           <img src="/svg/instagram.svg" alt="instagram icon" />

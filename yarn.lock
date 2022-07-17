@@ -3084,10 +3084,10 @@
   dependencies:
     "lottie-web" "^5.8.1"
 
-"lottie-web@^5.8.1":
-  "integrity" "sha512-3uKtU6BhIK6ZRCE/QyiXq/KuRvPeEAz/VFwqd99jPbpgFY9gHLw2krqvcuCFGepeW94BipS/B3TqIfTc9pUeZg=="
-  "resolved" "https://registry.npmjs.org/lottie-web/-/lottie-web-5.9.1.tgz"
-  "version" "5.9.1"
+"lottie-web@^5.8.1", "lottie-web@^5.9.6":
+  "integrity" "sha512-JFs7KsHwflugH5qIXBpB4905yC1Sub2MZWtl/elvO/QC6qj1ApqbUZJyjzJseJUtVpgiDaXQLjBlIJGS7UUUXA=="
+  "resolved" "https://registry.npmjs.org/lottie-web/-/lottie-web-5.9.6.tgz"
+  "version" "5.9.6"
 
 "lru_map@^0.3.3":
   "integrity" "sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ=="
