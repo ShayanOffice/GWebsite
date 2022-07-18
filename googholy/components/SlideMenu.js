@@ -10,9 +10,9 @@ const Backdrop = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${(props) => (props.isOpen ? "#0009" : "#0000")};
+  background-color: ${(props) => (props.isOpen ? "#0007" : "#0000")};
   pointer-events: ${(props) => (props.isOpen ? "fill" : "none")};
-  ${(props) => props.isOpen && "backdrop-filter: blur(10px);"}
+  ${(props) => props.isOpen && "backdrop-filter: blur(6px);"}
 `;
 const Window = styled.div`
   transition: all 0.3s ease-out;
@@ -39,7 +39,7 @@ export default function SlideMenu({ isOpen, setIsOpen }) {
       <Backdrop isOpen={isOpen} onClick={() => setIsOpen(false)} />
       <Window isOpen={isOpen}>
         <HiX
-          className="absolute text-4xl cursor-pointer text-gray-500 hover:text-gray-800 right-4 top-2 hover:scale-[1.2] hover:animate-spin rounded-full"
+          className="absolute text-5xl cursor-pointer text-gray-500 hover:text-amber-700 right-5 top-4 hover:scale-[1.2] hover:animate-spin rounded-full"
           onClick={() => setIsOpen(false)}
         />
       </Window>

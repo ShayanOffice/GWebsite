@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import lottie from 'lottie-web';
 // import lottie from "lottie-web/build/player/lottie_light";
-// import icon from '../../animations/lottie/12202-wallet.json';
 import { useEffect, useRef, useState } from 'react';
 
 const Container = styled.div``;

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import Lottie from "lottie-react";
-import { useLottie } from "lottie-react";
-import bg_animation from "../../animations/animated_melts.json";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import LottieAnim from "./LottieAnim";
 
 const Container = styled.div`
   margin: 0;
@@ -19,35 +17,32 @@ const Container = styled.div`
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   overflow-y: hidden;
-/* 
-  filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
+
+  /* filter: brightness(70%) blur(15px) hue-rotate(-3deg) contrast(7)
     saturate(0.88); */
 `;
 
 const Anim = () => {
-  const options = {
-    loop: true,
-    autoplay: true,
-    animationData: bg_animation,
-    // rendererSettings: {
-    //   preserveAspectRatio: "none",
-    // },
-  };
-  const { View } = useLottie(options, {
-    zIndex: 6,
-    pointerEvents: "none",
-    // width: "70vw",
-    height: "65%",
-    flex: "none",
-    // filter:""
-    // scrollSnapAlign: 'Start',
-  });
-  return View;
+  return (
+    <LottieAnim
+      src="/lottie/animated_melts.json"
+      style={{
+        zIndex: 6,
+        pointerEvents: "none",
+        height: "65%",
+        flex: "none",
+        // scrollSnapAlign: 'Start',
+      }}
+      speed={1}
+      autoplay={true}
+      loop={true}
+      onClick={() => setIsWalletMenuOpen(true)}
+    />
+  );
 };
 
 const BGCurves = React.forwardRef((props, ref) => {
   const { height, width } = useWindowDimensions();
-
   const moreCurves = (count) => {
     if (width > 768) {
       let animCurves = [];
@@ -62,16 +57,6 @@ const BGCurves = React.forwardRef((props, ref) => {
 
   return (
     <Container ref={ref}>
-      {/* <Lottie
-          animationData={bg_animation}
-          style={{
-            zIndex: 1,
-            pointerEvents: 'none',
-            position: 'absolute',
-            width: '500px',
-            height: '500px',
-          }}
-        /> */}
       <Anim />
       <Anim />
       <Anim />

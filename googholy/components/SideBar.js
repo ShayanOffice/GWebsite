@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import styled from 'styled-components';
-import LoginButton from './LoginButton';
-import AnimatedButton from './AnimatedButton';
+import React, { useRef } from "react";
+import styled from "styled-components";
+import LoginButton from "./LoginButton";
+import LottieAnim from "./LottieAnim";
 
 const Container = styled.div`
   .icons {
@@ -30,6 +30,16 @@ const Container = styled.div`
     backdrop-filter: blur(15px);
   }
 
+  .wallet {
+    margin-top: 35px;
+    height: 25px;
+    cursor: pointer;
+    width: 1.1vw;
+    min-width: 25px;
+    &:last-of-type {
+      margin-bottom: 55px;
+    }
+  }
   img {
     margin-top: 35px;
     cursor: pointer;
@@ -47,6 +57,9 @@ const Container = styled.div`
     .bg {
       width: 55px;
     }
+    .wallet {
+      height: 19px;
+    }
     img {
       min-width: 19px;
     }
@@ -57,6 +70,9 @@ const Container = styled.div`
     }
     .bg {
       width: 40px;
+    }
+    .wallet {
+      height: 17px;
     }
     img {
       /* width: 1.1vw; */
@@ -69,35 +85,43 @@ export default function SideBar({ setIsWalletMenuOpen }) {
   // const blocklyRef = useRef(null);
   return (
     <Container>
-      <div className='bg' />
-      <div className='icons'>
+      <div className="bg" />
+      <div className="icons">
         <div>
-          <img
-            src='/svg/wallet.svg'
-            alt='wallet icon'
+          {/* <img
+            className="wallet"
+            src="/svg/wallet.svg"
+            alt="wallet icon"
+            onClick={() => setIsWalletMenuOpen(true)}
+          /> */}
+          <LottieAnim
+            className="wallet"
+            src="/lottie/12202-wallet.json"
+            sizeX="620%"
+            sizeY="620%"
+            // renderer="canvas"
+            speed={2}
+            autoplay={true}
+            // loop={true}
+            hoverSegment={[19, 25]}
+            // clickSegment={[19, 25]}
+            onEnteredFrames={{
+              25: (e, animated, element) => {
+                if (e.direction == 1) {
+                  console.log("entered frame 25", e.direction);
+                }
+              },
+            }}
+            // setLottieAnimation={setLottie} give it the setState to get the animation instance and take control on the outside.
+            // elRef={animElementRef} get html ref of animation container
             onClick={() => setIsWalletMenuOpen(true)}
           />
           {/* <LoginButton/> */}
-          <AnimatedButton
-            className='w-16 h-20'
-            // forward
-            src='/animated/12202-wallet.json'
-            sizeX='192px'
-            sizeY='192px'
-            speed={1}
-            segment={[19, 25]}
-            FrameEvents={{
-              15: (e, animated, element) =>
-                console.log('entered frame 15', e.direction),
-              20: (e, animated, element) =>
-                console.log('entered frame 20', e.direction),
-            }}
-          />
         </div>
         <div>
-          <img src='/svg/instagram.svg' alt='instagram icon' />
-          <img src='/svg/discord.svg' alt='discord icon' />
-          <img src='/svg/twitter.svg' alt='twitter icon' />
+          <img src="/svg/instagram.svg" alt="instagram icon" />
+          <img src="/svg/discord.svg" alt="discord icon" />
+          <img src="/svg/twitter.svg" alt="twitter icon" />
         </div>
       </div>
     </Container>

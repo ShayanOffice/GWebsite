@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import Lottie from "lottie-react";
-import { useLottie } from "lottie-react";
-import blob_animation from "../../animations/animated_blob.json";
+import LottieAnim from "./LottieAnim";
 
 const Container = styled.div`
   margin: 0;
@@ -24,24 +22,22 @@ const Container = styled.div`
 `;
 
 const Anim = () => {
-  const options = {
-    loop: true,
-    autoplay: true,
-    // initialSegment: [30, 150],
-    animationData: blob_animation,
-    // rendererSettings: {
-    //   preserveAspectRatio: "none",
-    // },
-  };
-  const { View } = useLottie(options, {
-    pointerEvents: "none",
-    width: "10%",
-  });
-  return View;
+  return (
+    <LottieAnim
+      src="/lottie/animated_blob.json"
+      style={{
+        pointerEvents: "none",
+        width: "10%",
+      }}
+      speed={1}
+      autoplay={true}
+      loop={true}
+      onClick={() => setIsWalletMenuOpen(true)}
+    />
+  );
 };
 
 const AnimatedBlobScalable = React.forwardRef((props, ref) => {
-
   return (
     <Container ref={ref}>
       <Anim />

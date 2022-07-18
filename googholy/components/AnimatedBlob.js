@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import Lottie from "lottie-react";
-import { useLottie } from "lottie-react";
-import blob_animation from "../../animations/animated_blob.json";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import LottieAnim from "./LottieAnim";
 
 const Container = styled.div`
   margin: 0;
@@ -23,29 +21,27 @@ const Container = styled.div`
     z-index: 51;
   }
 `;
-
 const Anim = () => {
-  const options = {
-    loop: true,
-    autoplay: true,
-    // initialSegment: [30, 150],
-    animationData: blob_animation,
-    // rendererSettings: {
-    //   preserveAspectRatio: "none",
-    // },
-  };
-  const { View } = useLottie(options, {
-    zIndex: 6,
-    pointerEvents: "none",
-    // width: "70vw",
-    width: "65%",
-    minWidth: "480px",
-    // heigth: "100%",
-    flex: "none",
+  return (
+    <LottieAnim
+      src="/lottie/animated_blob.json"
+      style={{
+        zIndex: 6,
+        pointerEvents: "none",
+        // width: "70vw",
+        width: "65%",
+        minWidth: "480px",
+        // heigth: "100%",
+        flex: "none",
 
-    // scrollSnapAlign: 'Start',
-  });
-  return View;
+        // scrollSnapAlign: 'Start',
+      }}
+      speed={1}
+      autoplay={true}
+      loop={true}
+      onClick={() => setIsWalletMenuOpen(true)}
+    />
+  );
 };
 
 const AnimatedBlob = React.forwardRef((props, ref) => {
