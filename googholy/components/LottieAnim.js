@@ -1,9 +1,10 @@
-// import lottie from "lottie-web";
-import lottie from "lottie-web/build/player/lottie_light";
+import lottie from "lottie-web";
+// import lottie from "lottie-web/build/player/lottie_light";
 import { useEffect, useRef, useState } from "react";
 
 export default function LottieAnim({
   style,
+  innerStyle,
   className,
   src,
   autoplay,
@@ -193,6 +194,7 @@ export default function LottieAnim({
           pointerEvents: "none",
           width: sizeX ? sizeX : "100%",
           height: sizeY ? sizeY : "100%",
+          ...innerStyle,
         }}
         ref={ref}
       />

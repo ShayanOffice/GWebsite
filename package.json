@@ -11,13 +11,16 @@
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "@reduxjs/toolkit": "^1.8.3",
+    "dotenv": "^16.0.1",
     "lottie-web": "^5.9.6",
+    "moralis": "^1.9.0",
     "next": "12.1.1",
     "react": "17.0.2",
     "react-blockly": "^7.0.1",
     "react-dom": "17.0.2",
     "react-fps": "^1.0.6",
     "react-icons": "^4.4.0",
+    "react-moralis": "^1.4.0",
     "react-redux": "^8.0.2",
     "styled-components": "^5.3.5"
   },
