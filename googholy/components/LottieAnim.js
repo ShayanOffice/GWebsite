@@ -6,6 +6,7 @@ export default function LottieAnim({
   style,
   innerStyle,
   className,
+  title,
   src,
   autoplay,
   playOnClick,
@@ -15,6 +16,7 @@ export default function LottieAnim({
   sizeY,
   forward,
   speed,
+  segment,
   hoverSegment,
   mouseLeaveSegment,
   clickSegment,
@@ -31,8 +33,8 @@ export default function LottieAnim({
   const ref = useRef();
   const [anim, setAnim] = useState();
   var animation;
-
-  var currentSegment = { name: NaN, range: [0, 99999999] };
+  const defRange = segment ? segment : [0, 99999];
+  var currentSegment = { name: NaN, range: defRange };
 
   const setCurrentSegment = (anim, name, range, stop = false) => {
     if (!anim) {
@@ -78,6 +80,7 @@ export default function LottieAnim({
       path: src, // the path to the animation json
       rendererSettings: {
         progressiveLoad: true,
+        // preserveAspectRatio: 'none',
         // preserveAspectRatio: 'xMidYMid meet',
       },
     };
@@ -97,13 +100,15 @@ export default function LottieAnim({
   function Init() {
     // console.warn('Init');
     speed && animation.setSpeed(speed);
-    if (hoverSegment) {
+    if (segment) {
+      setCurrentSegment(animation, "segment", segment, !autoplay);
+    } else if (hoverSegment) {
       setCurrentSegment(animation, "hoverSegment", hoverSegment, true);
     } else if (clickSegment) {
       setCurrentSegment(animation, "clickSegment", clickSegment, true);
     }
     setLottieAnimation && setLottieAnimation(animation);
-    onInit && onInit();
+    onInit && onInit(animation);
   }
 
   function EnteredFrame(e) {
@@ -142,6 +147,7 @@ export default function LottieAnim({
         ...style,
       }}
       className={className}
+      title={title && title}
       onMouseEnter={(e) => {
         if (anim) {
           anim.setDirection(1);
@@ -159,14 +165,15 @@ export default function LottieAnim({
               anim.goToAndPlay(mouseLeaveSegment[0], false);
             } else if (hoverSegment) {
               setCurrentSegment(anim, "hoverSegment", hoverSegment, true);
-            } else anim.goToAndStop(0, false);
+            }
           } else {
-            anim.setDirection(-1);
             if (mouseLeaveSegment) {
+              anim.setDirection(-1);
               setCurrentSegment(anim, "mouseLeaveSegment", mouseLeaveSegment);
             } else if (hoverSegment) {
+              anim.setDirection(-1);
               setCurrentSegment(anim, "hoverSegment", hoverSegment);
-            } else if (!autoplay && !playOnClick && !clickSegment) anim.play();
+            }
           }
         }
 

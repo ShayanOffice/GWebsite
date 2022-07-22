@@ -15,7 +15,7 @@ const Backdrop = styled.div`
   ${(props) => props.isOpen && "backdrop-filter: blur(6px);"}
 `;
 const Window = styled.div`
-  transition: all 0.3s ease-out;
+  transition: all 0.1s ease-out;
   height: 93vh;
   width: 85vw;
   top: 50%;

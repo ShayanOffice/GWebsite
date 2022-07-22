@@ -7919,10 +7919,10 @@
     "yargs-parser" "20.2.4"
     "yargs-unparser" "2.0.0"
 
-"moralis@^1.9.0", "moralis@>=1.8.0":
-  "integrity" "sha512-X/BScB1y5hgzfI4xG5Y4MWW8dzOiKJdYycb9D8lGh8ov3LcmQpzIuxnMyYvelzleuw3AuT9P4IUPRHF6tVk9Gw=="
-  "resolved" "https://registry.npmjs.org/moralis/-/moralis-1.9.0.tgz"
-  "version" "1.9.0"
+"moralis@^1.9.1", "moralis@>=1.8.0":
+  "integrity" "sha512-2q758vHlInMXkYoLqh9/5ubQzQge4noPdj8ToWi8FzYYwuNjDUk2ZarLGUtrTVdQJ9HtrDTCEa7opEyB7xOsKA=="
+  "resolved" "https://registry.npmjs.org/moralis/-/moralis-1.9.1.tgz"
+  "version" "1.9.1"
   dependencies:
     "@babel/runtime" "7.16.7"
     "@babel/runtime-corejs3" "7.16.8"

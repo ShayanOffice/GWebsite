@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import LoginButton from './LoginButton';
-import LottieAnim from './LottieAnim';
+import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
+import LoginButton from "./LoginButton";
+import LottieAnim from "./LottieAnim";
 
-import { useMoralis } from 'react-moralis';
+import { useMoralis } from "react-moralis";
 
 const Container = styled.div`
   .icons {
@@ -33,8 +33,8 @@ const Container = styled.div`
   }
 
   .wallet {
-    margin-top: 25px;
-    height: 30px;
+    margin-top: 10px;
+    /* height: 30px; */
     cursor: pointer;
     width: 1.1vw;
     min-width: 25px;
@@ -44,6 +44,7 @@ const Container = styled.div`
     /* height: 30px; */
     cursor: pointer;
     width: 1.1vw;
+    height: fit-content;
     min-width: 25px;
   }
   img {
@@ -64,7 +65,12 @@ const Container = styled.div`
       width: 55px;
     }
     .wallet {
-      height: 22px;
+      /* height: 22px; */
+      min-width: 19px;
+    }
+    .login {
+      min-width: 19px;
+      max-height: 25px;
     }
     img {
       min-width: 19px;
@@ -78,7 +84,12 @@ const Container = styled.div`
       width: 40px;
     }
     .wallet {
-      height: 20px;
+      /* height: 20px; */
+      min-width: 17px;
+    }
+    .login {
+      min-width: 17px;
+      max-height: 23px;
     }
     img {
       /* width: 1.1vw; */
@@ -105,14 +116,14 @@ export default function SideBar({ setIsWalletMenuOpen }) {
   }, [isAuthenticated]);
 
   const login = async () => {
-    console.log('url', process.env.NEXT_PUBLIC_SERVER_URL);
-    console.log('appId', process.env.NEXT_PUBLIC_MORALIS_APP_ID);
+    console.log("url", process.env.NEXT_PUBLIC_SERVER_URL);
+    console.log("appId", process.env.NEXT_PUBLIC_MORALIS_APP_ID);
 
     if (!isAuthenticated) {
-      await authenticate({ signingMessage: 'Log into GooGholy NFT Project' })
+      await authenticate({ signingMessage: "Log into GooGholy NFT Project" })
         .then(function (user) {
-          console.log('logged in user: ', user);
-          console.log('Connected Wallet: ', user?.get('ethAddress'));
+          console.log("logged in user: ", user);
+          console.log("Connected Wallet: ", user?.get("ethAddress"));
         })
         .catch(function (error) {
           console.log(error);
@@ -122,17 +133,17 @@ export default function SideBar({ setIsWalletMenuOpen }) {
 
   const logOut = async () => {
     await logout();
-    console.log('logged out');
+    console.log("logged out");
   };
 
   // const blocklyRef = useRef(null);
   return (
     <Container>
-      <div className='bg' />
-      <div className='icons'>
-        <div className='flex flex-col items-center justify-center'>
+      <div className="bg" />
+      <div className="icons">
+        <div className="flex flex-col items-center justify-center">
           <LoginButton
-            className='mt-6 transition-all duration-75 login'
+            className="mt-6 transition-all rounded-full login hover:scale-110 "
             loginFunction={login}
             logoutFunction={logOut}
             isAuthenticated={isAuthenticated}
@@ -140,12 +151,12 @@ export default function SideBar({ setIsWalletMenuOpen }) {
           />
 
           <LottieAnim
-            className='transition-all wallet hover:scale-110'
-            src='/lottie/wallet_anim.json'
-            sizeX='230%'
-            sizeY='230%'
-            innerStyle={{ marginBottom: '20px' }}
-            renderer='canvas'
+            className="transition-all wallet hover:scale-110"
+            src="/lottie/wallet_anim.json"
+            sizeX="450%"
+            // sizeY="78%"
+            // innerStyle={{ marginBottom: "20px" }}
+            renderer="canvas"
             speed={2}
             // autoplay={true}
             // loop={true}
@@ -160,7 +171,9 @@ export default function SideBar({ setIsWalletMenuOpen }) {
             // }}
             // setLottieAnimation={setLottie} give it the setState to get the animation instance and take control on the outside.
             // elRef={animElementRef} get html ref of animation container
-            onClick={() => setIsWalletMenuOpen(true)}
+            onClick={() =>
+              isAuthenticated ? setIsWalletMenuOpen(true) : login()
+            }
           />
 
           {/* <img
@@ -172,19 +185,19 @@ export default function SideBar({ setIsWalletMenuOpen }) {
         </div>
         <div>
           <img
-            className='transition-all duration-75 hover:scale-125'
-            src='/svg/instagram.svg'
-            alt='instagram icon'
+            className="transition-all duration-75 hover:scale-125"
+            src="/svg/instagram.svg"
+            alt="instagram icon"
           />
           <img
-            className='transition-all duration-75 hover:scale-125'
-            src='/svg/discord.svg'
-            alt='discord icon'
+            className="transition-all duration-75 hover:scale-125"
+            src="/svg/discord.svg"
+            alt="discord icon"
           />
           <img
-            className='transition-all duration-75 hover:scale-125'
-            src='/svg/twitter.svg'
-            alt='twitter icon'
+            className="transition-all duration-75 hover:scale-125"
+            src="/svg/twitter.svg"
+            alt="twitter icon"
           />
         </div>
       </div>
