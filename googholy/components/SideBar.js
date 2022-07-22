@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import LoginButton from "./LoginButton";
-import LottieAnim from "./LottieAnim";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import LoginButton from './LoginButton';
+import LottieAnim from './LottieAnim';
 
-import { useMoralis } from "react-moralis";
+import { useMoralis } from 'react-moralis';
 
 const Container = styled.div`
   .icons {
@@ -33,7 +33,7 @@ const Container = styled.div`
   }
 
   .wallet {
-    margin-top: 45px;
+    margin-top: 25px;
     height: 30px;
     cursor: pointer;
     width: 1.1vw;
@@ -105,14 +105,14 @@ export default function SideBar({ setIsWalletMenuOpen }) {
   }, [isAuthenticated]);
 
   const login = async () => {
-    console.log("url", process.env.NEXT_PUBLIC_SERVER_URL);
-    console.log("appId", process.env.NEXT_PUBLIC_MORALIS_APP_ID);
+    console.log('url', process.env.NEXT_PUBLIC_SERVER_URL);
+    console.log('appId', process.env.NEXT_PUBLIC_MORALIS_APP_ID);
 
     if (!isAuthenticated) {
-      await authenticate({ signingMessage: "Log in using Moralis" })
+      await authenticate({ signingMessage: 'Log into GooGholy NFT Project' })
         .then(function (user) {
-          console.log("logged in user: ", user);
-          console.log("Connected Wallet: ", user?.get("ethAddress"));
+          console.log('logged in user: ', user);
+          console.log('Connected Wallet: ', user?.get('ethAddress'));
         })
         .catch(function (error) {
           console.log(error);
@@ -122,44 +122,30 @@ export default function SideBar({ setIsWalletMenuOpen }) {
 
   const logOut = async () => {
     await logout();
-    console.log("logged out");
+    console.log('logged out');
   };
 
   // const blocklyRef = useRef(null);
   return (
     <Container>
-      <div className="bg" />
-      <div className="icons">
-        <div className="flex flex-col items-center justify-center">
-          <LottieAnim
-            className="mt-6 transition-all duration-75 hover:scale-110 login"
-            src="/lottie/FingerPrint.json"
-            sizeX="300%"
-            // sizeY="250%"
-            renderer="canvas"
-            speed={1}
-            autoplay={false}
-            hoverSegment={[0, 35]}
-            // clickSegment={[0, 25]}
-            // onEnteredFrames={{
-            //   25: (e, animated, element) => {
-            //     if (e.direction == 1) {
-            //       console.log("entered frame 25", e.direction);
-            //     }
-            //   },
-            // }}
-            // setLottieAnimation={setLottie} give it the setState to get the animation instance and take control on the outside.
-            // elRef={animElementRef} get html ref of animation container
-            alt="login icon"
-            onClick={login}
+      <div className='bg' />
+      <div className='icons'>
+        <div className='flex flex-col items-center justify-center'>
+          <LoginButton
+            className='mt-6 transition-all duration-75 login'
+            loginFunction={login}
+            logoutFunction={logOut}
+            isAuthenticated={isAuthenticated}
+            isAuthenticating={isAuthenticating}
           />
+
           <LottieAnim
-            className="transition-all wallet hover:scale-110"
-            src="/lottie/wallet_anim.json"
-            sizeX="230%"
-            sizeY="230%"
-            innerStyle={{ marginBottom: "20px" }}
-            renderer="canvas"
+            className='transition-all wallet hover:scale-110'
+            src='/lottie/wallet_anim.json'
+            sizeX='230%'
+            sizeY='230%'
+            innerStyle={{ marginBottom: '20px' }}
+            renderer='canvas'
             speed={2}
             // autoplay={true}
             // loop={true}
@@ -183,23 +169,22 @@ export default function SideBar({ setIsWalletMenuOpen }) {
             alt="login icon"
             onClick={login}
           /> */}
-          {/* <LoginButton/> */}
         </div>
         <div>
           <img
-            className="transition-all duration-75 hover:scale-125"
-            src="/svg/instagram.svg"
-            alt="instagram icon"
+            className='transition-all duration-75 hover:scale-125'
+            src='/svg/instagram.svg'
+            alt='instagram icon'
           />
           <img
-            className="transition-all duration-75 hover:scale-125"
-            src="/svg/discord.svg"
-            alt="discord icon"
+            className='transition-all duration-75 hover:scale-125'
+            src='/svg/discord.svg'
+            alt='discord icon'
           />
           <img
-            className="transition-all duration-75 hover:scale-125"
-            src="/svg/twitter.svg"
-            alt="twitter icon"
+            className='transition-all duration-75 hover:scale-125'
+            src='/svg/twitter.svg'
+            alt='twitter icon'
           />
         </div>
       </div>
