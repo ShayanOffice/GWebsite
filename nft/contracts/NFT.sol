@@ -17,14 +17,14 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     string public baseExtension = ".json";
     string public notRevealedUri;
     uint256 public cost = 0.1 ether;
-    uint256 public maxSupply = 10;
-    uint256 public maxMintAmount = 20;
-    uint256 public nftPerAddressLimit = 1;
+    uint32 public maxSupply = 10;
+    uint32 public maxMintAmount = 20;
+    uint32 public nftPerAddressLimit = 1;
     bool public paused = true;
     bool public revealed = false;
     bool public onlyWhitelisted = true;
     address[] public whitelistedAddresses;
-    mapping(address => uint256) public mintedWalletsBalances;
+    mapping(address => uint32) public mintedWalletsBalances;
 
     constructor(
         string memory _name,
@@ -34,7 +34,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     ) ERC721(_name, _sym) {
         setBaseURI(_initBaseURI);
         setNotRevealedURI(_initNotRevealedUri);
-        console.log("NotRevealed URI is: %o", notRevealedUri);
+        // console.log("NotRevealed URI is: %o", notRevealedUri);
     }
 
     // internal
@@ -43,8 +43,8 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     // public
-    function mint(uint256 _mintAmount) public payable {
-        require(!paused, "the contract is paused");
+    function mint(uint32 _mintAmount) public payable {
+        require(!paused, "Minting is not open");
         uint256 supply = totalSupply();
         require(_mintAmount > 0, "Mint at least 1 NFT");
         require(
@@ -153,7 +153,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     //only owner
-    function updateMeta(uint256 tokenId, string memory _tokenURI)
+    function updateMeta(uint32 tokenId, string memory _tokenURI)
         public
         onlyOwner
     {
@@ -165,7 +165,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         revealed = true;
     }
 
-    function setNftPerAddressLimit(uint256 _limit) public onlyOwner {
+    function setNftPerAddressLimit(uint32 _limit) public onlyOwner {
         nftPerAddressLimit = _limit;
     }
 
@@ -173,7 +173,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         cost = _newCost;
     }
 
-    function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
+    function setmaxMintAmount(uint32 _newmaxMintAmount) public onlyOwner {
         maxMintAmount = _newmaxMintAmount;
     }
 

@@ -28,8 +28,7 @@ describe("NFT contract", function () {
   describe("Deployment", function () {
     it("Should set the notRevealedUri", async function () {
       const { nft, owner } = await loadFixture(deployNFTFixture);
-      // const notRevealedUri = await nft.notRevealedUri;
-      console.log("thaaaa url is: ", await nft.notRevealedUri());
+      // console.log("thaaaa url is: ", await nft.notRevealedUri());
       expect(await nft.notRevealedUri()).to.equal(
         "ipfs://bafybeieph4uteygcipvr66h4ee4z3nhz36yfjjlm3wmg6dqkpmvu5gavxu/Egg.json"
       );
@@ -48,7 +47,7 @@ describe("NFT contract", function () {
         deployNFTFixture
       );
       await expect(nft.connect(addr1).mint(3)).to.be.revertedWith(
-        "the contract is paused"
+        "Minting is not open"
       );
     });
 
@@ -68,45 +67,60 @@ describe("NFT contract", function () {
         deployNFTFixture
       );
       await nft.pause(false);
-      await expect(nft.connect(addr1).mint(19)).to.be.revertedWith(
+      await expect(nft.connect(addr1).mint(12)).to.be.revertedWith(
         "supply limit exceeded"
       );
     });
 
-    it("Should get whitelist error", async function () {
-      const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
-        deployNFTFixture
-      );
-      await nft.pause(false);
+    // it("Should get whitelist error", async function () {
+    //   const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
+    //     deployNFTFixture
+    //   );
+    //   await nft.pause(false);
 
-      await expect(nft.connect(addr1).mint(1)).to.be.revertedWith(
-        "user is not whitelisted"
-      );
-    });
-    
-    it("Should get whitelist error", async function () {
+    //   await expect(nft.connect(addr1).mint(1)).to.be.revertedWith(
+    //     "user is not whitelisted"
+    //   );
+    // });
+
+    // it("Should get max NFT per address exceeded error", async function () {
+    //   const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
+    //     deployNFTFixture
+    //   );
+    //   await nft.pause(false);
+    //   await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
+    //   await expect(nft.connect(addr1).mint(2)).to.be.revertedWith(
+    //     "max NFT per address exceeded"
+    //   );
+    // });
+
+    // it("Should get max NFT per address exceeded error after 1 mint", async function () {
+    //   const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
+    //     deployNFTFixture
+    //   );
+    //   await nft.pause(false);
+
+    //   await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
+    //   await nft.connect(addr1).mint(1);
+    //   await expect(nft.connect(addr1).mint(1)).to.be.revertedWith(
+    //     "max NFT per address exceeded"
+    //   );
+    // });
+
+    it("User should get the nft after mint", async function () {
       const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
         deployNFTFixture
       );
       await nft.pause(false);
       await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
-      await expect(nft.connect(addr1).mint(2)).to.be.revertedWith(
-        "max NFT per address exceeded"
-      );
+      console.log(ethers.utils.formatEther(await addr1.getBalance()));
+      await nft.connect(addr1).mint(1);
+      expect(
+        await nft.mintedWalletsBalances(
+          "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+        )
+      ).to.equal(1);
     });
-
-    it("Should get insufficient funds error", async function () {
-      const { nft, owner, addr1, addr2, addr3 } = await loadFixture(
-        deployNFTFixture
-      );
-      await nft.pause(false);
-      await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
-      // await 
-      await expect(nft.connect(addr1).mint(2)).to.be.revertedWith(
-        "insufficient funds"
-      );
-    });
-    
   });
 
   // describe("Transactions", function () {
