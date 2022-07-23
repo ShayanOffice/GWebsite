@@ -26,10 +26,10 @@ describe("NFT contract", function () {
   }
 
   describe("Deployment", function () {
-    it("Should set the notRevealedUri", async function () {
+    it("Should set the hiddenMetadataUri", async function () {
       const { nft, owner } = await loadFixture(deployNFTFixture);
       // console.log("thaaaa url is: ", await nft.notRevealedUri());
-      expect(await nft.notRevealedUri()).to.equal(
+      expect(await nft.hiddenMetadataUri()).to.equal(
         "ipfs://bafybeieph4uteygcipvr66h4ee4z3nhz36yfjjlm3wmg6dqkpmvu5gavxu/Egg.json"
       );
     });
@@ -58,7 +58,7 @@ describe("NFT contract", function () {
       await nft.pause(false);
       await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
       await expect(nft.connect(addr1).mint(40)).to.be.revertedWith(
-        "max mint amount per session exceeded"
+        'Invalid mint amount!'
       );
     });
 
@@ -68,7 +68,7 @@ describe("NFT contract", function () {
       );
       await nft.pause(false);
       await expect(nft.connect(addr1).mint(12)).to.be.revertedWith(
-        "supply limit exceeded"
+        'Max supply exceeded!'
       );
     });
 
@@ -113,8 +113,7 @@ describe("NFT contract", function () {
       );
       await nft.pause(false);
       await nft.whitelistUsers(["0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]);
-      console.log(ethers.utils.formatEther(await addr1.getBalance()));
-      await nft.connect(addr1).mint(1);
+      await nft.connect(addr1).mint(1, { value: ethers.utils.parseEther("0.1") });
       expect(
         await nft.mintedWalletsBalances(
           "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"

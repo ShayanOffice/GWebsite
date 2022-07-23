@@ -7,34 +7,73 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
+import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
 contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     using Strings for uint256;
+    using Counters for Counters.Counter;
+
+    Counters.Counter private supply;
 
     string public baseURI;
-    string public baseExtension = ".json";
-    string public notRevealedUri;
+    string public uriSuffix = ".json";
+    string public hiddenMetadataUri;
+
     uint256 public cost = 0.1 ether;
     uint32 public maxSupply = 10;
-    uint32 public maxMintAmount = 20;
+    uint32 public maxTxMintAmount = 20;
     uint32 public nftPerAddressLimit = 1;
-    bool public paused = true;
+
     bool public revealed = false;
+    bool public paused = true;
+
     bool public onlyWhitelisted = true;
     address[] public whitelistedAddresses;
+
     mapping(address => uint32) public mintedWalletsBalances;
 
     constructor(
         string memory _name,
         string memory _sym,
         string memory _initBaseURI,
-        string memory _initNotRevealedUri
+        string memory _initHiddenMetadataUri
     ) ERC721(_name, _sym) {
         setBaseURI(_initBaseURI);
-        setNotRevealedURI(_initNotRevealedUri);
+        setHiddenMetadataUri(_initHiddenMetadataUri);
         // console.log("NotRevealed URI is: %o", notRevealedUri);
+    }
+
+    modifier pausedCompilance() {
+        require(paused == false, "Minting is not open");
+        _;
+    }
+
+    modifier mintCompliance(uint32 _mintAmount) {
+        require(
+            _mintAmount > 0 && _mintAmount <= maxTxMintAmount,
+            "Invalid mint amount!"
+        );
+        require(
+            supply.current() + _mintAmount <= maxSupply,
+            "Max supply exceeded!"
+        );
+        _;
+    }
+
+    modifier whiteListCompilance(uint32 _mintAmount) {
+        if (tx.origin != owner()) {
+        if (onlyWhitelisted == true) {
+            require(isWhitelisted(tx.origin), "user is not whitelisted");
+            uint256 ownerMintedCount = mintedWalletsBalances[tx.origin];
+            require(
+                ownerMintedCount + _mintAmount <= nftPerAddressLimit,
+                "max NFT per address exceeded"
+            );
+        }
+        require(msg.value >= cost * _mintAmount, "insufficient funds");
+        }
+        _;
     }
 
     // internal
@@ -43,31 +82,21 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     // public
-    function mint(uint32 _mintAmount) public payable {
-        require(!paused, "Minting is not open");
-        uint256 supply = totalSupply();
-        require(_mintAmount > 0, "Mint at least 1 NFT");
-        require(
-            _mintAmount <= maxMintAmount,
-            "max mint amount per session exceeded"
-        );
-        require(supply + _mintAmount <= maxSupply, "supply limit exceeded");
+    function mint(uint32 _mintAmount)
+        public
+        payable
+        pausedCompilance
+        mintCompliance(_mintAmount)
+        whiteListCompilance(_mintAmount)
+    {
+        _mintLoop(tx.origin, _mintAmount);
+    }
 
-        if (msg.sender != owner()) {
-            if (onlyWhitelisted == true) {
-                require(isWhitelisted(msg.sender), "user is not whitelisted");
-                uint256 ownerMintedCount = mintedWalletsBalances[msg.sender];
-                require(
-                    ownerMintedCount + _mintAmount <= nftPerAddressLimit,
-                    "max NFT per address exceeded"
-                );
-            }
-            require(msg.value >= cost * _mintAmount, "insufficient funds");
-        }
-
-        for (uint256 i = 1; i <= _mintAmount; i++) {
-            mintedWalletsBalances[msg.sender]++;
-            _safeMint(msg.sender, supply + i);
+    function _mintLoop(address _receiver, uint32 _mintAmount) internal {
+        for (uint32 i = 0; i < _mintAmount; i++) {
+            mintedWalletsBalances[_receiver]++;
+            supply.increment();
+            _safeMint(_receiver, supply.current());
         }
     }
 
@@ -103,7 +132,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         require(_exists(tokenId), "URI query for nonexistent token");
 
         if (revealed == false) {
-            return notRevealedUri;
+            return hiddenMetadataUri;
         }
 
         string memory currentBaseURI = _baseURI();
@@ -113,7 +142,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
                     abi.encodePacked(
                         currentBaseURI,
                         tokenId.toString(),
-                        baseExtension
+                        uriSuffix
                     )
                 )
                 : "";
@@ -124,7 +153,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         address from,
         address to,
         uint256 tokenId
-    ) internal override(ERC721, ERC721Enumerable) {
+    ) internal override(ERC721, ERC721Enumerable) pausedCompilance {
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
@@ -165,6 +194,10 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         revealed = true;
     }
 
+    function pause(bool _state) public onlyOwner {
+        paused = _state;
+    }
+
     function setNftPerAddressLimit(uint32 _limit) public onlyOwner {
         nftPerAddressLimit = _limit;
     }
@@ -174,26 +207,22 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     function setmaxMintAmount(uint32 _newmaxMintAmount) public onlyOwner {
-        maxMintAmount = _newmaxMintAmount;
+        maxTxMintAmount = _newmaxMintAmount;
     }
 
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
     }
 
-    function setBaseExtension(string memory _newBaseExtension)
+    function setUriSuffix(string memory _newUriSuffix) public onlyOwner {
+        uriSuffix = _newUriSuffix;
+    }
+
+    function setHiddenMetadataUri(string memory _notRevealedURI)
         public
         onlyOwner
     {
-        baseExtension = _newBaseExtension;
-    }
-
-    function setNotRevealedURI(string memory _notRevealedURI) public onlyOwner {
-        notRevealedUri = _notRevealedURI;
-    }
-
-    function pause(bool _state) public onlyOwner {
-        paused = _state;
+        hiddenMetadataUri = _notRevealedURI;
     }
 
     function setOnlyWhitelisted(bool _state) public onlyOwner {
