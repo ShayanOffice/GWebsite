@@ -57,6 +57,16 @@ const Container = styled.div`
     }
   }
 
+  .icon {
+    margin-top: 35px;
+    cursor: pointer;
+    width: 1.1vw;
+    min-width: 25px;
+    &:last-of-type {
+      margin-bottom: 55px;
+    }
+  }
+
   @media (max-width: 640px) {
     .icons {
       left: 23px;
@@ -71,6 +81,9 @@ const Container = styled.div`
     .login {
       min-width: 19px;
       max-height: 25px;
+    }
+    .icon {
+      min-width: 19px;
     }
     img {
       min-width: 19px;
@@ -90,6 +103,10 @@ const Container = styled.div`
     .login {
       min-width: 17px;
       max-height: 23px;
+    }
+    .icon {
+      /* width: 1.1vw; */
+      min-width: 17px;
     }
     img {
       /* width: 1.1vw; */
@@ -143,7 +160,7 @@ export default function SideBar({ setIsWalletMenuOpen }) {
       <div className="icons">
         <div className="flex flex-col items-center justify-center">
           <LoginButton
-            className="mt-6 transition-all rounded-full login hover:scale-110 "
+            className="z-10 mt-6 transition-all rounded-full login hover:scale-125 "
             loginFunction={login}
             logoutFunction={logOut}
             isAuthenticated={isAuthenticated}
@@ -151,16 +168,19 @@ export default function SideBar({ setIsWalletMenuOpen }) {
           />
 
           <LottieAnim
-            className="transition-all wallet hover:scale-110"
+            className="z-20 transition-all wallet hover:scale-125"
             src="/lottie/wallet_anim.json"
             sizeX="450%"
-            // sizeY="78%"
-            // innerStyle={{ marginBottom: "20px" }}
             renderer="canvas"
             speed={2}
+            hoverSegment={[0, 25]}
+            onClick={() =>
+              isAuthenticated ? setIsWalletMenuOpen(true) : login()
+            }
+            // sizeY="78%"
+            // innerStyle={{ marginBottom: "20px" }}
             // autoplay={true}
             // loop={true}
-            hoverSegment={[0, 25]}
             // clickSegment={[19, 25]}
             // onEnteredFrames={{
             //   25: (e, animated, element) => {
@@ -171,9 +191,6 @@ export default function SideBar({ setIsWalletMenuOpen }) {
             // }}
             // setLottieAnimation={setLottie} give it the setState to get the animation instance and take control on the outside.
             // elRef={animElementRef} get html ref of animation container
-            onClick={() =>
-              isAuthenticated ? setIsWalletMenuOpen(true) : login()
-            }
           />
 
           {/* <img
@@ -184,21 +201,48 @@ export default function SideBar({ setIsWalletMenuOpen }) {
           /> */}
         </div>
         <div>
-          <img
+          {/* <img
             className="transition-all duration-75 hover:scale-125"
             src="/svg/instagram.svg"
             alt="instagram icon"
+          /> */}
+          <LottieAnim
+            // title="Instagram Page"
+            className="transition-all duration-75 icon hover:scale-125"
+            src="/lottie/6716-twitter-social-media-icon.json"
+            sizeX="300%"
+            // sizeY="250%"
+            renderer="canvas"
+            speed={1.5}
+            autoplay={false}
+            hoverSegment={[0, 30]}
+            // clickSegment={[36, 80]}
+            alt="Instagram icon"
           />
-          <img
+          <LottieAnim
+            // title="Instagram Page"
+            className="transition-all duration-75 icon hover:scale-125"
+            src="/lottie/6749-instagram-social-media-icon.json"
+            sizeX="300%"
+            // sizeY="250%"
+            renderer="canvas"
+            speed={1.5}
+            autoplay={false}
+            hoverSegment={[0, 10]}
+            // clickSegment={[36, 80]}
+            alt="Instagram icon"
+          />
+
+          {/* <img
             className="transition-all duration-75 hover:scale-125"
             src="/svg/discord.svg"
             alt="discord icon"
-          />
-          <img
+          /> */}
+          {/* <img
             className="transition-all duration-75 hover:scale-125"
             src="/svg/twitter.svg"
             alt="twitter icon"
-          />
+          /> */}
         </div>
       </div>
     </Container>

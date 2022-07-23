@@ -277,11 +277,11 @@ const Container = styled.div`
 export default function FirstPage() {
   return (
     <Container>
-      <div className="side leftPart flex flex-col w-full h-full text-center justify-center align-middle">
+      <div className="flex flex-col justify-center w-full h-full text-center align-middle side leftPart">
         <img className="Logo" src="/svg/Logo.svg" />
-        <div className="Minting relative">
-          <span>
-            <div className="bg h-full bg-white absolute">
+        <div className="relative Minting">
+          {/* <span>
+            <div className="absolute h-full bg-white bg">
               Minting in
               <br /> 98<span className="unit">days</span>&nbsp; 16
               <span className="unit">hours</span>&nbsp; 54
@@ -293,15 +293,15 @@ export default function FirstPage() {
             <span className="unit">hours</span>&nbsp; 54
             <span className="unit">minutes</span>&nbsp; 33
             <span className="unit">seconds</span>&nbsp;
-          </span>
-          {/* <div className="mintNow flex justify-center align-middle">
-            <button className="font-bold text-white bg-lime-400 ring-lime-300 ring-4  rounded-3xl p-1 px-4  shadow-xl text-6xl sm:text-6xl md:text-7xl  lg:text-8xl xl:text-9xl flex flex-none justify-center text-center align-middle mx-12">
+          </span> */}
+          <div className="flex justify-center align-middle transition-all mintNow hover:scale-125 ">
+            <button className="flex justify-center flex-none p-1 px-4 mx-12 text-6xl font-bold text-center text-white align-middle transition-all shadow-xl bg-lime-600 hover:bg-lime-500 ring-lime-300 ring-4 rounded-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
               <span className="mintBtnTxt drop-shadow-md">MiNt NoW!</span>
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
-      <div className="side rightPart flex flex-col w-full h-full text-center justify-center align-middle">
+      <div className="flex flex-col justify-center w-full h-full text-center align-middle side rightPart">
         <div className="Images">
           <img className="first" src="/img/GooGholyEgg.png" />
           <img className="second" src="/img/BabyGooGholy.png" />

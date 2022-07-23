@@ -13,7 +13,7 @@ export default function LoginButton({
 }) {
   const [hovering, setHovering] = useState(false);
   const blackBgStyles =
-    "absolute z-0 w-[135%] h-[110%] rounded-full  transition-all shadow";
+    "absolute z-0 w-[135%] h-[110%] rounded-full  transition-all shadow-md";
   return (
     <Container
       className={className + " relative"}
@@ -24,7 +24,7 @@ export default function LoginButton({
       {isAuthenticating && !isAuthenticated && (
         <LottieAnim
           title="Connecting..."
-          className="absolute -top-4"
+          className="absolute -top-6"
           src="/lottie/LoginPendingAmber.json"
           sizeX="600%"
           // sizeY="250%"
@@ -46,7 +46,7 @@ export default function LoginButton({
             sizeX="300%"
             // sizeY="250%"
             renderer="canvas"
-            speed={2}
+            speed={1}
             segment={[0, 43]}
             autoplay={true}
             // onInit={(animated) => console.log("authed anim init!!!!!!", animated)}

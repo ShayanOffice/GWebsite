@@ -16,15 +16,15 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     string public baseURI;
     string public baseExtension = ".json";
     string public notRevealedUri;
-    uint256 public cost = 1 ether;
-    uint256 public maxSupply = 10000;
+    uint256 public cost = 0.1 ether;
+    uint256 public maxSupply = 10;
     uint256 public maxMintAmount = 20;
-    uint256 public nftPerAddressLimit = 3;
-    bool public paused = false;
+    uint256 public nftPerAddressLimit = 1;
+    bool public paused = true;
     bool public revealed = false;
     bool public onlyWhitelisted = true;
     address[] public whitelistedAddresses;
-    mapping(address => uint256) public addressMintedBalance;
+    mapping(address => uint256) public mintedWalletsBalances;
 
     constructor(
         string memory _name,
@@ -51,12 +51,12 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
             _mintAmount <= maxMintAmount,
             "max mint amount per session exceeded"
         );
-        require(supply + _mintAmount <= maxSupply, "max NFT limit exceeded");
+        require(supply + _mintAmount <= maxSupply, "supply limit exceeded");
 
         if (msg.sender != owner()) {
             if (onlyWhitelisted == true) {
                 require(isWhitelisted(msg.sender), "user is not whitelisted");
-                uint256 ownerMintedCount = addressMintedBalance[msg.sender];
+                uint256 ownerMintedCount = mintedWalletsBalances[msg.sender];
                 require(
                     ownerMintedCount + _mintAmount <= nftPerAddressLimit,
                     "max NFT per address exceeded"
@@ -66,7 +66,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         }
 
         for (uint256 i = 1; i <= _mintAmount; i++) {
-            addressMintedBalance[msg.sender]++;
+            mintedWalletsBalances[msg.sender]++;
             _safeMint(msg.sender, supply + i);
         }
     }
