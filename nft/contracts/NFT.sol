@@ -31,7 +31,7 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     bool public onlyWhitelisted = true;
     address[] public whitelistedAddresses;
 
-    mapping(address => uint32) public mintedWalletsBalances;
+    mapping(address => uint32[]) public walletTokens;
 
     constructor(
         string memory _name,
@@ -63,15 +63,15 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
 
     modifier whiteListCompilance(uint32 _mintAmount) {
         if (tx.origin != owner()) {
-        if (onlyWhitelisted == true) {
-            require(isWhitelisted(tx.origin), "user is not whitelisted");
-            uint256 ownerMintedCount = mintedWalletsBalances[tx.origin];
-            require(
-                ownerMintedCount + _mintAmount <= nftPerAddressLimit,
-                "max NFT per address exceeded"
-            );
-        }
-        require(msg.value >= cost * _mintAmount, "insufficient funds");
+            if (onlyWhitelisted == true) {
+                require(isWhitelisted(tx.origin), "user is not whitelisted");
+                uint256 ownerMintedCount = walletTokens[tx.origin].length;
+                require(
+                    ownerMintedCount + _mintAmount <= nftPerAddressLimit,
+                    "max NFT per address exceeded"
+                );
+            }
+            require(msg.value >= cost * _mintAmount, "insufficient funds");
         }
         _;
     }
@@ -82,6 +82,15 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     // public
+
+    function getWalletTokens(address addr)
+        public
+        view
+        returns (uint32[] memory)
+    {
+        return walletTokens[addr];
+    }
+
     function mint(uint32 _mintAmount)
         public
         payable
@@ -94,9 +103,10 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
 
     function _mintLoop(address _receiver, uint32 _mintAmount) internal {
         for (uint32 i = 0; i < _mintAmount; i++) {
-            mintedWalletsBalances[_receiver]++;
             supply.increment();
-            _safeMint(_receiver, supply.current());
+            uint256 supp = supply.current();
+            walletTokens[_receiver].push(uint32(supp));
+            _safeMint(_receiver, supp);
         }
     }
 
@@ -190,8 +200,8 @@ contract NFT is ERC721Enumerable, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, _tokenURI);
     }
 
-    function reveal() public onlyOwner {
-        revealed = true;
+    function reveal(bool _state) public onlyOwner {
+        revealed = _state;
     }
 
     function pause(bool _state) public onlyOwner {
